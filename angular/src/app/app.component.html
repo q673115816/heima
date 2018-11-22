@@ -8,5 +8,5 @@
 <input type="text" [(ngModel)]="title">
 
 
-<input type="text" (keydown)="logHello($event)">
+<input type="text" (keyup)="logHello($event)">
 <button (click)="sayHello()">点击alert</button>
