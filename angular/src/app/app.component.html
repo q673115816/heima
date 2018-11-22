@@ -1,0 +1,12 @@
+
+<h1>Hello {{title}}!</h1>
+<ul>
+  <li *ngFor="let item of car;let index = index;let odd">
+    {{item}}:{{!odd?'true':'false'}}
+  </li>
+</ul>
+<input type="text" [(ngModel)]="title">
+
+
+<input type="text" (keydown)="logHello($event)">
+<button (click)="sayHello()">点击alert</button>
