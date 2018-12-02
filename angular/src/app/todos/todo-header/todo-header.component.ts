@@ -12,17 +12,14 @@ export class TodoHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  newTodo = ''
+  newTodo: string = ''
 
   @Output()
   add = new EventEmitter()
 
 
   addTodo() {
-    if (!this.newTodo) {
-      return false;
-    }
-    let name = this.newTodo.trim();
+    let name: string = this.newTodo.trim();
     this.add.emit(name)
     this.newTodo = "";
   }

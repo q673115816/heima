@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { Todo } from '../todo'
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -21,15 +21,15 @@ export class TodoListComponent implements OnInit {
   @Output()
   done = new EventEmitter()
 
-  trackByTodo(index, todo) {
+  trackByTodo(index: number, todo: Todo) {
     return todo.id;
   }
 
-  removeTodo(id) {
+  removeTodo(id: number) {
     this.remove.emit(id)
   }
 
-  doneTodo(id) {
+  doneTodo(id: number) {
     this.done.emit(id)
   }
 }

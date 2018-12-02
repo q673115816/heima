@@ -1,7 +1,11 @@
 <ul>
   <li *ngFor="let todo of todos; trackBy: trackByTodo">
     <span [class.done]="todo.done" (click)="doneTodo(todo.id)">
-      {{ todo.name }}{{ todo.id }}</span>
+      {{ todo.name }} </span>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
     <a href="javascript:;" (click)="removeTodo(todo.id)">x</a>
   </li>
 </ul>
