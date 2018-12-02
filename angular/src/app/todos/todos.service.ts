@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
-import { Todo } from './todo'
+import { Todo } from './todo';
 
 // @Injectable({
 //   providedIn: 'root'
@@ -13,10 +13,10 @@ export class TodosService {
 
   constructor(private http: HttpClient) { }
 
-  todos: Todo[]
-  url = 'http://localhost:3000/todos'
+  todos: Todo[];
+  url = 'http://localhost:3000/todos';
   getTodos() {
-    return this.http.get<Todo[]>(this.url)
+    return this.http.get<Todo[]>(this.url);
   }
 
   addTodo(name: string) {
@@ -33,21 +33,21 @@ export class TodosService {
     //   done: false
     // };
     // this.todos.push(todo);
-    return this.http.post(this.url,{
+    return this.http.post(this.url, {
       name: name,
       done: false
-    })  
+    });
   }
 
   removeTodo(id: number) {
     // let index = this.todos.findIndex(todo=> todo.id === id)
     // this.todos.splice(index,1);
-    return this.http.delete(`${this.url}/${id}`)
+    return this.http.delete(`${this.url}/${id}`);
   }
 
   doneTodo(id: number) {
     // let todo = this.todos.find(todo => todo.id === id);
     // todo.done = !todo.done;
-    return this.http.patch(`${this.url}/${id}`,{done: false})
+    return this.http.patch(`${this.url}/${id}`, { done: false });
   }
 }

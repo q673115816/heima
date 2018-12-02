@@ -1,40 +1,40 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
-import { TodosService } from '../todos.service'
+import { TodosService } from '../todos.service';
 
-import { Todo } from '../todo'
+import { Todo } from '../todo';
 @Component({
-  selector: "app-todo",
-  templateUrl: "./todo.component.html",
-  styleUrls: ["./todo.component.css"],
+  selector: 'app-todo',
+  templateUrl: './todo.component.html',
+  styleUrls: ['./todo.component.css'],
   // providers: [TodosService]
 })
 export class TodoComponent implements OnInit {
-  constructor(private todosServer: TodosService) {}
+  constructor(private todosServer: TodosService) { }
 
-  todos: Todo[]
-  
+  todos: Todo[];
   ngOnInit() {
-    this.todosServer.getTodos().subscribe((res: Todo[])=>{
-      this.todos = res
-    })
+    this.todosServer.getTodos().subscribe((res: Todo[]) => {
+      this.todos = res;
+    });
   }
 
   addTodo(name: string) {
-    this.todosServer.addTodo(name).subscribe((res)=>{
-      console.log(res)
+    this.todosServer.addTodo(name).subscribe((todo: Todo) => {
+      console.log(todo);
+      this.todos.push(todo);
     })
   }
 
   removeTodo(id: number) {
-    this.todosServer.removeTodo(id).subscribe((res)=>{
-      console.log(res)
+    this.todosServer.removeTodo(id).subscribe((res) => {
+      console.log(res);
     })
   }
 
   doneTodo(id: number) {
-    this.todosServer.doneTodo(id).subscribe((res)=>{
-      console.log(res)
+    this.todosServer.doneTodo(id).subscribe((res) => {
+      console.log(res);
     })
   }
 }
