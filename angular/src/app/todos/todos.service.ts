@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient } from '@angular/common/http'
+
 import { Todo } from './todo'
 
 // @Injectable({
@@ -9,55 +11,43 @@ import { Todo } from './todo'
 @Injectable()
 export class TodosService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   todos: Todo[]
-
+  url = 'http://localhost:3000/todos'
   getTodos() {
-    const todos: Todo[] = [
-      {
-        id: 1,
-        name: "吃饭",
-        done: false
-      },
-      {
-        id: 2,
-        name: "睡觉",
-        done: false
-      },
-      {
-        id: 3,
-        name: "打豆豆",
-        done: true
-      }
-    ];
-    this.todos = todos
-    return todos
+    return this.http.get<Todo[]>(this.url)
   }
 
   addTodo(name: string) {
-    let id;
-    if (this.todos.length && this.todos[this.todos.length - 1].id >= 1) {
-      id = this.todos[this.todos.length - 1].id + 1;
-    } else {
-      id = 1;
-    }
+    // let id;
+    // if (this.todos.length && this.todos[this.todos.length - 1].id >= 1) {
+    //   id = this.todos[this.todos.length - 1].id + 1;
+    // } else {
+    //   id = 1;
+    // }
 
-    let todo: Todo = {
-      id,
-      name,
+    // let todo: Todo = {
+    //   id,
+    //   name,
+    //   done: false
+    // };
+    // this.todos.push(todo);
+    return this.http.post(this.url,{
+      name: name,
       done: false
-    };
-    this.todos.push(todo);
+    })  
   }
 
   removeTodo(id: number) {
-    let index = this.todos.findIndex(todo=> todo.id === id)
-    this.todos.splice(index,1);
+    // let index = this.todos.findIndex(todo=> todo.id === id)
+    // this.todos.splice(index,1);
+    return this.http.delete(`${this.url}/${id}`)
   }
 
   doneTodo(id: number) {
-    let todo = this.todos.find(todo => todo.id === id);
-    todo.done = !todo.done;
+    // let todo = this.todos.find(todo => todo.id === id);
+    // todo.done = !todo.done;
+    return this.http.patch(`${this.url}/${id}`,{done: false})
   }
 }
