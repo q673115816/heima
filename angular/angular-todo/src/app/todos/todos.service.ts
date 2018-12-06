@@ -45,9 +45,9 @@ export class TodosService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  doneTodo(id: number) {
+  doneTodo(id: number,done: boolean) {
     // let todo = this.todos.find(todo => todo.id === id);
     // todo.done = !todo.done;
-    return this.http.patch(`${this.url}/${id}`, { done: false });
+    return this.http.patch(`${this.url}/${id}`, { done: done });
   }
 }

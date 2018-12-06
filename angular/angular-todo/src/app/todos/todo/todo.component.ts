@@ -14,26 +14,32 @@ export class TodoComponent implements OnInit {
 
   todos: Todo[];
   ngOnInit() {
-    this.todosServer.getTodos().subscribe((res: Todo[]) => {
-      this.todos = res;
+    this.todosServer.getTodos()
+                    .subscribe((res: Todo[]) => {
+      this.todos = [...res];
     });
   }
 
   addTodo(name: string) {
-    this.todosServer.addTodo(name).subscribe((todo: Todo) => {
+    this.todosServer.addTodo(name)
+                    .subscribe((todo: Todo) => {
       console.log(todo);
       this.todos.push(todo);
     })
   }
 
   removeTodo(id: number) {
-    this.todosServer.removeTodo(id).subscribe((res) => {
+    this.todosServer.removeTodo(id)
+                    .subscribe((res) => {
       console.log(res);
     })
   }
 
   doneTodo(id: number) {
-    this.todosServer.doneTodo(id).subscribe((res) => {
+    const curTodo = this.todos.find((todo)=>todo.id === id)
+    const done = curTodo.done
+    this.todosServer.doneTodo(id,done)
+                    .subscribe((res) => {
       console.log(res);
     })
   }
