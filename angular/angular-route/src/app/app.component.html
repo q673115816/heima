@@ -1,4 +1,5 @@
-<a routerLink="home" routerLinkActive="actived">home</a>
-<a routerLink="about" routerLinkActive="actived">about</a>
-
+<a [routerLink]="['home']" routerLinkActive="actived" [routerLinkActiveOptions]="{exact:
+true}">home</a>
+<a [routerLink]="['/about']" routerLinkActive="actived">about</a>
+<a [routerLink]="[ wtf ]" routerLinkActive="active">wtf</a>
 <router-outlet></router-outlet>

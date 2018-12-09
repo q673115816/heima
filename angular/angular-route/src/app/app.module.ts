@@ -36,7 +36,7 @@ const appRoutes: Routes = [{
     HomeComponent,
     PageNotFoundComponent,
     AboutComponent,
-    CarsComponent
+    CarsComponent,
   ],
   imports: [
     BrowserModule,

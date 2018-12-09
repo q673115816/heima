@@ -1,0 +1,28 @@
+<div>
+  <form [formGroup]="loginForm">
+
+    <label>
+      用户名：
+      <input type="text" formControlName="username">
+    </label>
+    <!-- <p>{{username.value}}</p> -->
+    <!-- <p *ngIf="username.errors && username.errors.required">用户名为必填项！</p> -->
+    <!-- <p *ngIf="username.errors?.required">用户名为必填项！</p> -->
+    <!-- <p *ngIf="username.dirty && username.errors?.required">用户名为必填项！</p> -->
+    <!-- <p *ngIf="username.dirty && username.hasError('required')">用户名为必填项！</p> -->
+    <!-- <p *ngIf="username.dirty && username.hasError('minlength')">用户名最小长度为3</p> -->
+    <!-- <p *ngIf="username.dirty && username.hasError('maxlength')">用户名最大长度为6</p> -->
+    <p *ngIf="loginForm.controls.username.dirty && loginForm.controls.username.hasError('regerror')">用户名最小长度为3，最大长度为6</p>
+    <label>
+      密码；
+      <input type="text" formControlName="password">
+    </label>
+    <!-- <p>{{password.value}}</p> -->
+    <p *ngIf="loginForm.controls.password.dirty && loginForm.controls.password.hasError('required')">必填</p>
+
+    <button (click)="getUserName()">获取用户名</button>
+
+    <button (click)="setUserName()">设置用户名</button>
+    <button (click)="login()">登录</button>
+  </form>
+</div>
