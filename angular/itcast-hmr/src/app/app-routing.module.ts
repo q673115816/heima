@@ -5,13 +5,16 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { AuthGuard } from './auth.guard';
+
 const routes: Routes = [{
   path: '',
   redirectTo: '/home',
   pathMatch: 'full'
 }, {
   path: 'home',
-  component: HomeComponent
+  component: HomeComponent,
+  canActivate: [AuthGuard]
 }, {
   path: 'login',
   component: LoginComponent
