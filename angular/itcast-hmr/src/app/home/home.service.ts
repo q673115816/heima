@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
 
 import { URL } from '../config';
 
-interface LoginForm {
-  username: string;
-  password: string;
-}
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class HomeService {
 
   constructor(private http: HttpClient) { }
-  login(loginForm: LoginForm) {
-    return this.http.post(`${URL}/tokens`, loginForm);
+
+  logout (token: string) {
+    console.log(token);
+    return this.http.delete(`${URL}/tokens`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
   }
 }

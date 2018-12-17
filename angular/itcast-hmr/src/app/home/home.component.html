@@ -1,17 +1,52 @@
 <nz-layout class="home-wrap">
-<nz-sider nzCollapsible="true" [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth] [nzBreakpoint]="'sm'">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzBreakpoint]="'sm'">
     <div class="logo">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
-      <li nz-menu-item><span><i nz-icon type="user"></i><span class="nav-text">nav 1</span></span></li>
-      <li nz-menu-item><span><i nz-icon type="video-camera"></i><span class="nav-text">nav 2</span></span>
+      <li nz-submenu>
+        <span title>
+          <i nz-icon type="user"></i>
+          <span class="nav-text">员工</span>
+        </span>
+        <ul>
+          <li nz-menu-item>员工列表</li>
+          <li nz-menu-item>员工操作</li>
+        </ul>
       </li>
-      <li nz-menu-item><span><i nz-icon type="upload"></i><span class="nav-text">nav 3</span></span></li>
-      <li nz-menu-item><span><i nz-icon type="user"></i><span class="nav-text">nav 4</span></span></li>
+      <li nz-submenu>
+        <span title>
+          <i nz-icon type="team"></i>
+          <span class="nav-text">Team</span>
+        </span>
+        <ul>
+          <li nz-menu-item>Team 1</li>
+          <li nz-menu-item>Team 2</li>
+        </ul>
+      </li>
+      <li nz-menu-item><span><i nz-icon type="file"></i><span class="nav-text">File</span></span></li>
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header style="background: #fff; padding:0;"></nz-header>
+    <nz-header style="background: #fff; padding:0;">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col nzSpan="4">
+          <div nz-row nzType="flex" nzJustify="center" nzAlign="middle">
+            <nz-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+            <a href="javascript:;" nz-popover nzTitle="确定退出？" [(nzVisible)]="visible" nzTrigger="click" [nzContent]="logout"
+              nzPlacement="bottom">
+              <i nz-icon type="logout" theme="outline"></i>
+              <span>退出</span>
+            </a>
+            <ng-template #logout>
+              <div nz-row nzType="flex" nzJustify="space-around">
+                <button nz-button nzSize="small" nzType="default" (click)="logout()">确定</button>
+                <button nz-button nzSize="small" nzType="primary" (click)='closeLogout()'>取消</button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </nz-header>
     <nz-content style="margin:24px 16px 0;">
       <div style="padding:24px; background: #fff; min-height: 360px;">
         Content
