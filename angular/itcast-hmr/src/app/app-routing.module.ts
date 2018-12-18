@@ -14,11 +14,16 @@ const routes: Routes = [{
 }, {
   path: 'home',
   component: HomeComponent,
-  canActivate: [AuthGuard]
+  canActivate: [AuthGuard],
+  children: [{
+      path: 'employee',
+      loadChildren: './employee/employee.module#EmployeeModule',
+    },
+  ]
 }, {
   path: 'login',
   component: LoginComponent
-}, {
+  },  {
   path: '**',
   component: PageNotFoundComponent
 }];
