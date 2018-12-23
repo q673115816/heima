@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private message: NzMessageService) {}
 
-  logout() {
+  userLogout() {
     const token = localStorage.getItem('itcast-token');
     this.homeServer.logout(token).subscribe((res) => {
       console.log(res);
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  closeLogout () {
+  closeLogout() {
     this.visible = false;
   }
 }

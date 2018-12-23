@@ -1,5 +1,5 @@
 <nz-layout class="home-wrap">
-  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzBreakpoint]="'sm'">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzBreakpoint]="'lg'">
     <div class="logo">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
@@ -9,8 +9,8 @@
           <span class="nav-text">员工</span>
         </span>
         <ul>
-          <li nz-menu-item>员工列表</li>
-          <li nz-menu-item>员工操作</li>
+          <li nz-menu-item routerLink="list" routerLinkActive="ant-menu-item-selected">员工列表</li>
+          <li nz-menu-item routerLink="add" routerLinkActive="ant-menu-item-selected">员工添加</li>
         </ul>
       </li>
       <li nz-submenu>
@@ -39,7 +39,7 @@
             </a>
             <ng-template #logout>
               <div nz-row nzType="flex" nzJustify="space-around">
-                <button nz-button nzSize="small" nzType="default" (click)="logout()">确定</button>
+                <button nz-button nzSize="small" nzType="default" (click)="userLogout()">确定</button>
                 <button nz-button nzSize="small" nzType="primary" (click)='closeLogout()'>取消</button>
               </div>
             </ng-template>
