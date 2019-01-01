@@ -1,4 +1,4 @@
-<nz-table #basicTable [nzData]="dataSet">
+<nz-table #basicTable [nzData]="employees">
   <thead>
     <tr>
       <th>编号</th>
@@ -11,18 +11,96 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of basicTable.data; trackBy:trackByDataSet">
+    <tr *ngFor="let data of basicTable.data; trackBy:trackByemployees">
       <td>{{data.id}}</td>
       <td>{{data.name}}</td>
-      <td>{{data.gender===0?'男':'女'}}</td>
+      <td>{{data.gender===0?'女':'男'}}</td>
       <td>{{data.email}}</td>
       <td>{{data.phoneNumber}}</td>
       <td>{{data.joinDate | date: 'yyyy-MM-dd'}}</td>
       <td>
-        <a>修改</a>
+        <a (click)="showModal(data.id)">修改</a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="deleteEmployees(data.id)">删除</a>
+        <ng-container>
+          <nz-popconfirm [nzTitle]="'确认删除？'" (nzOnConfirm)="deleteEmployees(data.id)">
+            <a nz-popconfirm>删除</a>
+          </nz-popconfirm>
+        </ng-container>
       </td>
     </tr>
   </tbody>
 </nz-table>
+<nz-modal 
+[(nzVisible)]="isVisible" 
+nzTitle="修改员工信息" 
+nzOkText="提交"
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()" 
+[nzOkLoading]="isOkLoading">
+  <form nz-form [formGroup]="editForm" (ngSubmit)="submitForm($event,editForm.value)">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>姓名</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="name" placeholder="请输入员工姓名">
+        <nz-form-explain *ngIf="editForm.get('name').dirty && editForm.get('name').errors">
+          <ng-container *ngIf="editForm.get('name').hasError('required')">
+            请输入员工姓名!
+          </ng-container>
+          <!-- 异步返回的多余重复姓名 -->
+          <!-- <ng-container *ngIf="editForm.get('userName').hasError('duplicated')">
+          The username is redundant!
+        </ng-container> -->
+          <!-- 异步验证状态 -->
+          <!-- <ng-container *ngIf="editForm.get('userName').pending">
+          Validating...
+        </ng-container> -->
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7">性别</nz-form-label>
+      <div>
+        <nz-form-control [nzSpan]="12">
+          <nz-radio-group formControlName="gender">
+            <label nz-radio nzValue="0">男</label>
+            <label nz-radio nzValue="1">女</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>邮箱</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="email" placeholder="请输入员工邮箱" type="email">
+        <nz-form-explain *ngIf="editForm.get('email').dirty&&editForm.get('email').errors">
+          <ng-container *ngIf="editForm.get('email').hasError('email')">
+            请输入正确的邮箱地址!
+          </ng-container>
+          <ng-container *ngIf="editForm.get('email').hasError('required')">
+            请输入员工邮箱!
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>联系号码</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input type="tel" formControlName="phoneNumber" placeholder="请输入联系号码">
+        <nz-form-explain *ngIf="editForm.get('phoneNumber').dirty&&editForm.get('phoneNumber').errors">
+          <ng-container *ngIf="editForm.get('phoneNumber').hasError('required')">
+            联系方式不能为空!
+          </ng-container>
+          <ng-container *ngIf="editForm.get('phoneNumber').hasError('phoneTest')">
+            请输入正确的联系方式!
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="7">入职日期</nz-form-label>
+      <nz-form-control [nzSm]="12">
+        <nz-date-picker formControlName="joinDate"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

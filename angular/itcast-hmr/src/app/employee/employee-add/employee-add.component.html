@@ -2,25 +2,30 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>姓名</nz-form-label>
     <nz-form-control [nzSpan]="12" nzHasFeedback>
-      <input nz-input formControlName="userName" placeholder="请输入员工姓名">
-      <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors || validateForm.get('userName').pending ">
-        <ng-container *ngIf="validateForm.get('userName').hasError('required')">
+      <input nz-input formControlName="name" placeholder="请输入员工姓名">
+      <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">
+        <ng-container *ngIf="validateForm.get('name').hasError('required')">
           请输入员工姓名!
         </ng-container>
-        <ng-container *ngIf="validateForm.get('userName').hasError('duplicated')">
+        <!-- 异步返回的多余重复姓名 -->
+        <!-- <ng-container *ngIf="validateForm.get('userName').hasError('duplicated')">
           The username is redundant!
-        </ng-container>
-        <ng-container *ngIf="validateForm.get('userName').pending">
+        </ng-container> -->
+        <!-- 异步验证状态 -->
+        <!-- <ng-container *ngIf="validateForm.get('userName').pending">
           Validating...
-        </ng-container>
+        </ng-container> -->
       </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>性别</nz-form-label>
+    <nz-form-label [nzSpan]="7">性别</nz-form-label>
     <div>
-      <nz-form-control [nzSpan]="12" nzHasFeedback>
-        <input nz-input type="password" formControlName="password" (ngModelChange)="validateConfirmPassword()">
+      <nz-form-control [nzSpan]="12">
+        <nz-radio-group formControlName="gender">
+          <label nz-radio nzValue="0">男</label>
+          <label nz-radio nzValue="1">女</label>
+        </nz-radio-group>
       </nz-form-control>
     </div>
   </nz-form-item>
@@ -30,7 +35,7 @@
       <input nz-input formControlName="email" placeholder="请输入员工邮箱" type="email">
       <nz-form-explain *ngIf="validateForm.get('email').dirty&&validateForm.get('email').errors">
         <ng-container *ngIf="validateForm.get('email').hasError('email')">
-          The input is not valid E-mail!
+          请输入正确的邮箱地址!
         </ng-container>
         <ng-container *ngIf="validateForm.get('email').hasError('required')">
           请输入员工邮箱!
@@ -39,29 +44,29 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>Confirm Password</nz-form-label>
+    <nz-form-label [nzSpan]="7" nzRequired>联系号码</nz-form-label>
     <nz-form-control [nzSpan]="12" nzHasFeedback>
-      <input nz-input type="password" formControlName="confirm" placeholder="confirm your password">
-      <nz-form-explain *ngIf="validateForm.get('confirm').dirty&&validateForm.get('confirm').errors">
-        <ng-container *ngIf="validateForm.get('confirm').hasError('required')">
-          Please confirm your password!
+      <input nz-input type="tel" formControlName="phoneNumber" placeholder="请输入联系号码">
+      <nz-form-explain *ngIf="validateForm.get('phoneNumber').dirty&&validateForm.get('phoneNumber').errors">
+        <ng-container *ngIf="validateForm.get('phoneNumber').hasError('required')">
+          联系方式不能为空!
         </ng-container>
-        <ng-container *ngIf="validateForm.get('confirm').hasError('confirm')">
-          Password is inconsistent!
+        <ng-container *ngIf="validateForm.get('phoneNumber').hasError('phoneTest')">
+          请输入正确的联系方式!
         </ng-container>
       </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="7" nzRequired>DatePicker</nz-form-label>
+    <nz-form-label [nzSm]="7">入职日期</nz-form-label>
     <nz-form-control [nzSm]="12">
-      <nz-date-picker formControlName="datePicker"></nz-date-picker>
+      <nz-date-picker formControlName="joinDate"></nz-date-picker>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control [nzOffset]="7" [nzSpan]="12">
-      <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
-      <button nz-button (click)="resetForm($event)">Reset</button>
+      <button nz-button nzType="primary" [disabled]="!validateForm.valid">提交</button>
+      <button nz-button (click)="resetForm($event)">重置</button>
     </nz-form-control>
   </nz-form-item>
 </form>
