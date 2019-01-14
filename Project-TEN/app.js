@@ -1,7 +1,10 @@
+const path = require('path')
 const express = require('express')
 const nunjucks = require('nunjucks')
 const app = express()
 
+
+app.use('/public', express.static(path.join(__dirname, 'public')))
 let count = 0;
 
 nunjucks.configure('views', {
