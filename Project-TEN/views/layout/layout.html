@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/font-swesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/css/base.css">
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="wrap">
+        {% include './header.html' %}
+        <main class="main">
+            {% block main %}
+            {% endblock %}
+        </main>
+        {% include './footer.html' %}
+    </div>
+    {% block foot%}
+    {% endblock %}
+</body>
+
+</html>
