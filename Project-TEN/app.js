@@ -5,7 +5,8 @@ const app = express()
 
 
 app.use('/public', express.static(path.join(__dirname, 'public')))
-app.use('/lib', express.static(path.join(__dirname, 'lib')))
+let count = 0;
+
 nunjucks.configure('views', {
     autoescape: true,
     express: app,
@@ -13,20 +14,12 @@ nunjucks.configure('views', {
 });
 
 app.get('/', function (req, res) {
+    count++
     res.render('index.html', {
-        message: 'nunjucks'
+        message: 'nunjucks',
+        count
     });
 });
-
-app.use('/people/home', (req,res) => {
-    res.render('people-home.html')
-})
-
-app.use('/test', (req,res) => {
-    res.render('test.html', {
-        msg: 'people-home'
-    })
-})
 
 app.listen(3000, () => {
     console.log('服务启动成功');
