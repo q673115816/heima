@@ -11,38 +11,38 @@
     <div class="row">
         <div class="col-md-6">
             <h4 class="mb-3">注册</h4>
-            <form>
+            <form id="register">
                 <div class="form-group">
-                    <label for="Nickname">昵称</label>
-                    <input type="text" class="form-control" id="Nickname" placeholder="Nickname">
+                    <label for="registerNickname">昵称</label>
+                    <input type="text" class="form-control" id="registerNickname" placeholder="Nickname">
                 </div>
                 <div class="form-group">
-                    <label for="Username">用户名</label>
-                    <input type="text" class="form-control" id="Username" placeholder="Username">
+                    <label for="registerUsername">用户名</label>
+                    <input type="text" class="form-control" id="registerUsername" placeholder="Username">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">密码</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="registerexampleInputPassword">密码</label>
+                    <input type="password" class="form-control" id="registerexampleInputPassword" placeholder="Password">
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">同意用户协议</label>
                 </div>
-                <button type="submit" class="btn btn-primary">注册</button>
+                <button type="submit" class="btn btn-primary" id="btn-rigister">注 册</button>
             </form>
         </div>
         <div class="col-md-6">
             <h4 class="mb-3">登录</h4>
-            <form>
+            <form id="login">
                 <div class="form-group">
-                    <label for="Username">用户名</label>
-                    <input type="text" class="form-control" id="Username" placeholder="Username">
+                    <label for="loginUsername">用户名</label>
+                    <input type="text" class="form-control" id="loginUsername" placeholder="Username">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">密码</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="loginexampleInputPassword">密码</label>
+                    <input type="password" class="form-control" id="loginexampleInputPassword" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="btn-login">登 录</button>
             </form>
         </div>
     </div>
@@ -53,7 +53,18 @@
 {% block foot %}
 <script>
     $(function () {
-        alert(1)
+        console.log(111);
+
+        $('#btn-rigister').on('submit', handleRegister)
+
+        function handleRegister() {
+            console.log(222);
+
+            var result = $(this).serialize()
+            console.log(result);
+
+            return false;
+        }
     })
 </script>
 {% endblock %}
