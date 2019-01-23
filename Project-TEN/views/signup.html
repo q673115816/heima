@@ -1,0 +1,103 @@
+{% extends './layout/layout.html' %}
+
+{% block main %}
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Checkout form</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form
+            group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="mb-3">注册</h4>
+            <form id="signup">
+                <div class="form-group">
+                    <label for="signupEmail">邮箱</label>
+                    <input type="email" class="form-control" name="signupEmail" id="signupEmail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="signupNickname">昵称</label>
+                    <input type="text" class="form-control" name="signupNickname" id="signupNickname" placeholder="Nickname">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">密码</label>
+                    <input type="password" class="form-control" name="signupPassword" id="signupPassword" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="exampleCheck" id="exampleCheck">
+                    <label class="form-check-label" for="exampleCheck">同意用户协议</label>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btn-signup">注 册</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h4 class="mb-3">登录</h4>
+            <form id="signin">
+                <div class="form-group">
+                    <label for="signinEmail">邮箱</label>
+                    <input type="email" class="form-control" name="signinEmail" id="signinEmail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="signinPassword">密码</label>
+                    <input type="password" class="form-control" name="signinPassword" id="signinPassword" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary" id="btn-signin">登 录</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block foot %}
+<script>
+    $(function () {
+        $('#signup').on('submit', signup)
+        $('#signin').on('submit', signin)
+
+        function signup() {
+            var result = $(this).serialize()
+            console.log(result);
+            $.ajax({
+                url: '/api/signup',
+                type: 'POST',
+                data: result,
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.code === 201) {
+                        location.href = '/home'
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+            return false;
+        }
+
+        function signin() {
+            var result = $(this).serialize()
+            console.log(result);
+            $.ajax({
+                url: '/api/signin',
+                type: 'POST',
+                data: result,
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.code === 200) {
+                        location.href = '/home'
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+            return false;
+        }
+
+    })
+</script>
+{% endblock %}

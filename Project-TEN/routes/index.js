@@ -4,14 +4,20 @@ const {
     IndexRoute,
     homeRoute,
     testRoute,
-    registerRoute
+    signupRoute,
 } = require('./route')
 
+const {
+    apiSignup,
+    apiSignin
+} = require('./api')
 Router
-.get('/', IndexRoute)
-.get('/index', IndexRoute)
-.get('/home', homeRoute)
-.get('/register', registerRoute)
-.get('/test', testRoute)
+    .get('/', IndexRoute)
+    .get('/index', IndexRoute)
+    .get('/home', homeRoute)
+    .get('/signup', signupRoute)
+    .get('/test', testRoute)
+    .post('/api/signup', apiSignup)
+    .post('/api/signin', apiSignin)
 
 module.exports = Router

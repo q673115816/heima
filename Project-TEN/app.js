@@ -1,8 +1,14 @@
 const path = require('path')
 const express = require('express')
 const nunjucks = require('nunjucks')
+const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes')
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({
+    extended: true
+})); // for parsing application/x-www-form-urlencoded
 
 app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use('/lib', express.static(path.join(__dirname, 'lib')))
