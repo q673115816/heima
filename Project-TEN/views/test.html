@@ -1,16 +1,33 @@
-{% extends "./layout/test.html" %}
-{% block title %}Index{% endblock %}
-{% block head %}
-{{ super() }}
-<style type="text/css">
-    .important {
-        color: #336699;
-    }
-</style>
+{% extends "./layout/layout.html" %}
+
+
+{% block main %}
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" name="word" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
 {% endblock %}
-{% block content %}
-<h1>Index</h1>
-<p class="important">
-    Welcome to my awesome homepage.
-</p>
+
+{% block foot %}
+<script>
+    $(function () {
+        $('.form-inline').on('submit', function () {
+            var result = $(this).serialize()
+            console.log(result);
+            $.ajax({
+                url: '/api/find',
+                data: result,
+                success: function (res) {
+                    console.log(res);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+            return false;
+        })
+    })
+</script>
 {% endblock %}

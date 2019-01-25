@@ -1,7 +1,4 @@
-const axios = require('axios')
-const {
-    APIURL
-} = require('../../config')
+const request = require('../../utils/request')
 const url = '/users/signup'
 
 
@@ -27,8 +24,7 @@ const apiSignup = async (req, res) => {
     }
     console.log(data);
 
-    axios({
-            baseURL: APIURL,
+    request({
             method: 'post',
             timeout: 3000,
             url: url,
