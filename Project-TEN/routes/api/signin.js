@@ -7,26 +7,13 @@ const apiSignin = async (req, res) => {
     const {
         body
     } = req
-    const {
-        signinEmail: email,
-        signinPassword: password,
-    } = body
-    // const data = {
-    //     email,
-    //     password,
-    //     nickname
-    // }
-    const data = {
-        email,
-        password
-    }
+
     console.log(data);
 
     request({
             method: 'post',
-            timeout: 3000,
             url: url,
-            data,
+            data: body,
         })
         .then(({
             status: code,
@@ -34,10 +21,10 @@ const apiSignin = async (req, res) => {
         }) => {
             console.log('登录成功：', data);
 
-            res.send({
-                code,
+            res.status(code).json({
                 data,
-                msg: '登录成功'
+                msg: '登录成功：'
+
             })
         }).catch(err => {
             console.log('错误：', err);

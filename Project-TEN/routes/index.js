@@ -12,15 +12,16 @@ const {
     apiSignin
 } = require('./api')
 
-const user = require('../service/user')
+const {
+    findUserBynickname
+} = require('../service/user')
 Router
-    .get('/', IndexRoute)
-    .get('/index', IndexRoute)
-    .get('/home', homeRoute)
-    .get('/signup', signupRoute)
-    .get('/test', testRoute)
+    .get(['/', '/index', 'index.html'], IndexRoute)
+    .get(['/home', 'home.html'], homeRoute)
+    .get(['/signup', 'signup.html'], signupRoute)
+    .get(['/test', 'test.html'], testRoute)
 Router
-    .get('/api/find', user)
+    .get('/api/find', findUserBynickname)
     .post('/api/signup', apiSignup)
     .post('/api/signin', apiSignin)
 

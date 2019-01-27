@@ -7,43 +7,23 @@ const apiSignup = async (req, res) => {
     const {
         body
     } = req
-    const {
-        signupEmail: email,
-        signupPassword: password,
-        signupNickname: nickname,
-    } = body
-    // const data = {
-    //     email,
-    //     password,
-    //     nickname
-    // }
-    const data = {
-        email,
-        password,
-        nickname
-    }
-    console.log(data);
-
     request({
             method: 'post',
-            timeout: 3000,
             url: url,
-            data,
+            data: body,
         })
         .then(({
             status: code,
             data
         }) => {
             console.log('注册成功：', data);
-
-            res.send({
-                code,
+            res.status(code).json({
                 data,
-                msg: '注册成功'
+                msg: '注册成功',
+                code
             })
         }).catch(err => {
             console.log('错误：', err);
-
             res.send(err)
         })
 }

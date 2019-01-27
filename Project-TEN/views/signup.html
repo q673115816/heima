@@ -13,19 +13,19 @@
             <h4 class="mb-3">注册</h4>
             <form id="signup">
                 <div class="form-group">
-                    <label for="signupEmail">邮箱</label>
-                    <input type="email" class="form-control" name="signupEmail" id="signupEmail" placeholder="Email">
+                    <label for="">邮箱</label>
+                    <input type="email" class="form-control" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <label for="signupNickname">昵称</label>
-                    <input type="text" class="form-control" name="signupNickname" id="signupNickname" placeholder="Nickname">
+                    <label for="">昵称</label>
+                    <input type="text" class="form-control" name="nickname" placeholder="Nickname">
                 </div>
                 <div class="form-group">
                     <label for="signupPassword">密码</label>
-                    <input type="password" class="form-control" name="signupPassword" id="signupPassword" placeholder="Password">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="exampleCheck" id="exampleCheck">
+                    <input type="checkbox" class="form-check-input" name="exampleCheck">
                     <label class="form-check-label" for="exampleCheck">同意用户协议</label>
                 </div>
                 <button type="submit" class="btn btn-primary" id="btn-signup">注 册</button>
@@ -36,11 +36,11 @@
             <form id="signin">
                 <div class="form-group">
                     <label for="signinEmail">邮箱</label>
-                    <input type="email" class="form-control" name="signinEmail" id="signinEmail" placeholder="Email">
+                    <input type="email" class="form-control" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <label for="signinPassword">密码</label>
-                    <input type="password" class="form-control" name="signinPassword" id="signinPassword" placeholder="Password">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary" id="btn-signin">登 录</button>
             </form>
@@ -57,8 +57,10 @@
         $('#signin').on('submit', signin)
 
         function signup() {
-            var result = $(this).serialize()
+            let result = $(this).serialize()
+
             console.log(result);
+            
             $.ajax({
                 url: '/api/signup',
                 type: 'POST',

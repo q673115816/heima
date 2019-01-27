@@ -4,10 +4,38 @@
 {% block main %}
 <nav class="navbar navbar-light bg-light">
     <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" name="word" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" name="nickname" placeholder="nickname" aria-label="Searchnickname">
+        <input class="form-control mr-sm-2" type="search" name="username" placeholder="username" aria-label="Searchusername">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">username</th>
+            <th scope="col">nickname</th>
+            <th scope="col">gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in arr %}
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<ul>
+    {% for item in items %}
+    <li>{{ item.title }}</li>
+    {% else %}
+    <li>This would display if the 'item' collection were empty</li>
+    {% endfor %}
+</ul>
 {% endblock %}
 
 {% block foot %}
@@ -27,6 +55,16 @@
                 }
             })
             return false;
+        })
+
+        $.ajax({
+            url: '/api/find',
+            success: function (res) {
+                console.log(res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
         })
     })
 </script>
