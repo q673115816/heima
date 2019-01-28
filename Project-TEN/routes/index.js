@@ -15,13 +15,17 @@ const {
 const {
     findUserBynickname
 } = require('../service/user')
+
+const find = require('../controller/find')
+const deleteUser = require('../controller/delete')
 Router
     .get(['/', '/index', 'index.html'], IndexRoute)
     .get(['/home', 'home.html'], homeRoute)
     .get(['/signup', 'signup.html'], signupRoute)
     .get(['/test', 'test.html'], testRoute)
 Router
-    .get('/api/find', findUserBynickname)
+    .get('/api/find', find)
+    .delete('/api/delete/:id', deleteUser)
     .post('/api/signup', apiSignup)
     .post('/api/signin', apiSignin)
 

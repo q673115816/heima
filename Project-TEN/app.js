@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes')
 
-app.set('view engine', 'html')
+// app.set('view engine', 'html')
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({
     extended: true
@@ -22,9 +22,11 @@ nunjucks.configure('views', {
 
 app.use(routes)
 
-const server = app.listen(3000, () => {
+const server = app.listen(3000, 'localhost', () => {
     const host = server.address().address
     const part = server.address().port
+    // console.log(server.address());
+    
     console.log('服务启动成功');
     console.log('%s:%s',host, part);
 })
