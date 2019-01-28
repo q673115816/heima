@@ -21,7 +21,9 @@ nunjucks.configure('views', {
 
 app.use(routes)
 
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
+    const host = server.address().address
+    const part = server.address().port
     console.log('服务启动成功');
-    console.log('http://localhost:3000');
+    console.log('%s:%s',host, part);
 })
