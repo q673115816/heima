@@ -31,13 +31,6 @@
         {% endfor %}
     </tbody>
 </table>
-<ul>
-    {% for item in items %}
-    <li>{{ item.title }}</li>
-    {% else %}
-    <li>This would display if the 'item' collection were empty</li>
-    {% endfor %}
-</ul>
 {% endblock %}
 
 {% block foot %}
@@ -62,12 +55,15 @@
                             _id
                         } = ele
                         let str =
-                            `<tr>
+                            `<tr data-id="${_id}">
                                 <th scope="row">${ind + 1}</th>
                                 <td>${email}</td>
                                 <td>${nickname}</td>
                                 <td>${gender}</td>
-                                <td><button type="button" class="btn btn-danger" data-id="${_id}">Del</button></td>
+                                <td>
+                                    <a href="/update/${_id}" class="btn btn-info btn-update">update</a>
+                                    <button type="button" class="btn btn-danger btn-del">Del</button>
+                                </td>
                             </tr>`
                         result += str
                     });
@@ -80,24 +76,27 @@
             })
             return false;
         })
+
         function del(id) {
+            var that = this
             $.ajax({
-                method:'DELETE',
+                method: 'DELETE',
                 url: '/api/delete/' + id,
-                success: function(res) {
+                success: function (res) {
                     console.log(res);
-                    
+                    $(that).parents('tr').remove();
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log(err);
-                    
                 }
             })
         }
-        $('tbody').on('click','button', function() {
-            const id = $(this).data('id')
-            del(id)
+
+        $('tbody').on('click', '.btn-del', function () {
+            const id = $(this).parents('tr').data('id')
+            del.call(this, id)
         })
+        
         $.ajax({
             url: '/api/find',
             success: function (res) {

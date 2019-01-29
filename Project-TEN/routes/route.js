@@ -1,3 +1,5 @@
+const user = require('../service/user');
+
 const IndexRoute = async (req, res) => {
     console.log('进入首页');
 
@@ -19,10 +21,19 @@ const signinRoute = async (req, res) => {
 const testRoute = async (req, res) => {
     res.render('test.html')
 }
+const updateRoute = async (req, res) => {
+    console.log('进入更新');
+    
+    const id = req.params.id
+    const data = await user.findUserById(id)
+    console.log(data);
+    res.render('update.html', {data})
+}
 module.exports = {
     IndexRoute,
     homeRoute,
     signupRoute,
     signinRoute,
     testRoute,
+    updateRoute,
 }

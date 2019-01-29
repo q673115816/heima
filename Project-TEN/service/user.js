@@ -30,12 +30,29 @@ async function findUserByusername(username) {
     return data
 }
 
+async function findUserById(id) {
+    const {
+        data
+    } = await request({
+        url: `/users/${id}`
+    })
+    return data
+}
+
 async function deteleUserById(id) {
-    const result = request({
+    const data = await request({
         method: 'DELETE',
         url: `/users/${id}`
     })
-    return result
+    return data
+}
+
+async function updateUser(id, data) {
+    const data = await request({
+        method: 'PATCH',
+        url: `/users/${id}/profile`,
+        data
+    }) 
 }
 
 
@@ -44,6 +61,7 @@ async function deteleUserById(id) {
 module.exports = {
     signup,
     deteleUserById,
+    findUserById,
     findUserBynickname,
     findUserByusername
 }

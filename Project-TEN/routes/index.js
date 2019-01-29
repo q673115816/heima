@@ -5,12 +5,13 @@ const {
     homeRoute,
     testRoute,
     signupRoute,
+    updateRoute
 } = require('./route')
 
 const {
     apiSignup,
     apiSignin
-} = require('./api')
+} = require('../controller')
 
 const {
     findUserBynickname
@@ -19,14 +20,16 @@ const {
 const find = require('../controller/find')
 const deleteUser = require('../controller/delete')
 Router
-    .get(['/', '/index', 'index.html'], IndexRoute)
-    .get(['/home', 'home.html'], homeRoute)
-    .get(['/signup', 'signup.html'], signupRoute)
-    .get(['/test', 'test.html'], testRoute)
+    .get(['/', '/index', '/index.html'], IndexRoute)
+    .get(['/home', '/home.html'], homeRoute)
+    .get(['/signup', '/signup.html'], signupRoute)
+    .get(['/test', '/test.html'], testRoute)
+    .get(['/update/:id', '/update.html'], updateRoute)
 Router
     .get('/api/find', find)
     .delete('/api/delete/:id', deleteUser)
     .post('/api/signup', apiSignup)
     .post('/api/signin', apiSignin)
+    .patch('/api/:id/profile', apiProfile)
 
 module.exports = Router
