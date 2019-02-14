@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    index组件
+    product
   </div>
 </template>
 <script>
@@ -10,6 +10,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .index {
-
+  color: #f00;
 }
 </style>

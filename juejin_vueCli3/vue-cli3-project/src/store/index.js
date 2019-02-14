@@ -28,7 +28,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    getNewsResponse(state) {
+    getNewsResponse (state) {
       return state[types.NEWS_LIST]
     }
   }

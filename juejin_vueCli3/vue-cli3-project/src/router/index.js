@@ -6,7 +6,11 @@ Vue.use(Router)
 let routes = []
 
 const routerContext = require.context('./', true, /index\.js$/)
+console.log(123)
+
 routerContext.keys().forEach(route => {
+  console.log(route)
+
   // 如果是根目录的 index.js 、不处理
   if (route.startsWith('./index')) {
     return
