@@ -25,7 +25,7 @@ const store = new Vuex.Store({
         console.log(payload)
         context.commit({
           type: 'increment',
-          hellosync: payload.hello
+          helloSync: payload.hello
         })
       }, 1000)
     }
