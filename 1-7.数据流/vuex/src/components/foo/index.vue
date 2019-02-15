@@ -1,27 +1,46 @@
 <template>
   <div class="foo">
-      <h2>foo</h2>
-      <p>{{ num }}</p>
-      <button @click="addNum()">加一</button>
+    <h2>foo</h2>
+    <p>{{ num }}</p>
+    <p>{{ count }}</p>
+    <button @click="addNum()">加一</button>
+    <button @click="increment({hello: 'hello'})">vuex</button>
+    <button @click="syncIncrement()">sync</button>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { 
+  mapState, 
+  mapMutations, 
+  // mapActions 
+  } from 'vuex'
 
 export default {
-    name: 'foo',
-    computed: mapState({
-        num: state => state.num
-    }),
-    methods: {
-        addNum() {
-            alert('Hello World')
-        }
+  name: 'foo',
+  data () {
+    return {
+      num: 0
     }
-};
+  },
+  computed: mapState(['count']),
+  methods: {
+    addNum () {
+      this.num++
+    },
+    ...mapMutations([
+      'increment'
+    ]),
+
+    syncIncrement () {
+      console.log(this.$store)
+      this.$store.dispatch({
+        type: 'syncIncrement',
+        hello: 'hellosync'
+      })
+    }
+  }
+}
 </script>
 
 <style>
 </style>
-
-
