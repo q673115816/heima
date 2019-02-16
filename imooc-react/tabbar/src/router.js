@@ -1,16 +1,24 @@
 import React from 'react';
-import {HashRouter, Route, Switch} from 'react-router-dom';
-import Home from './home';
-import Detail from './detail';
+import {
+    BrowserRouter,
+    Route,
+    Switch
+} from 'react-router-dom';
+import Home from './page/home';
+import User from './page/user';
+import Vip from './page/vip';
+import Gift from './page/gift';
 
 
 const BasicRoute = () => (
-    <HashRouter>
+    < BrowserRouter>
         <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/detail" component={Detail}/>
+            <Route exact path="/home" component={Home}/>
+            <Route exact path="/user" component={User}/>
+            <Route exact path="/Vip" component={Vip}/>
+            <Route exact path="/gift" component={Gift}/>
         </Switch>
-    </HashRouter>
+    </BrowserRouter>
 );
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Tabbar from './component/tabbar/'
+// import Tabbar from './component/tabbar/'
 import RouterMap from './router'
 import './static/iconfont.css'
 
