@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Tabbar from '../component/tabbar'
+@Tabbar
 class gift extends Component {
   render() {
     return (
@@ -11,4 +12,4 @@ class gift extends Component {
 }
 
 
-export default Tabbar(gift)
+export default gift
