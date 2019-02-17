@@ -1,19 +1,26 @@
 <template>
   <div id="app">
-    <foo></foo>
+    <products></products>
     <hr>
-    <bar></bar>
+    <cart></cart>
+    <!-- <foo></foo>
+    <hr>
+    <bar></bar> -->
   </div>
 </template>
 
 <script>
-import foo from './components/foo'
-import bar from './components/bar'
+import products from './components/products'
+import cart from './components/cart'
+// import foo from './components/foo'
+// import bar from './components/bar'
 export default {
   name: 'app',
   components: {
-    foo,
-    bar
+    products,
+    cart
+    // foo,
+    // bar
   }
 }
 </script>
