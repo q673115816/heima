@@ -6,6 +6,9 @@
     <!-- <foo></foo>
     <hr>
     <bar></bar> -->
+
+    <div>{{ $t('main.logo') }}</div>
+<input type="text" :placeholer="$t('auth.username')" />
   </div>
 </template>
 
@@ -21,6 +24,11 @@ export default {
     cart
     // foo,
     // bar
+  },
+  data () {
+    return {
+      login_title: this.$t('auth.login_title')
+    }
   }
 }
 </script>
