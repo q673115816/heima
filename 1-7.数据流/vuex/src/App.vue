@@ -6,9 +6,13 @@
     <!-- <foo></foo>
     <hr>
     <bar></bar> -->
-
-    <div>{{ $t('main.logo') }}</div>
-<input type="text" :placeholer="$t('auth.username')" />
+<div style="margin: 20px;">
+      <h1>{{$t("message.title")}}</h1>
+      <input style="width: 300px;" class="form-control" :placeholder="$t('placeholder.enter')">
+      <ul>
+        <li v-for="(brand, index) in brands" :key="index">{{brand}}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -27,7 +31,8 @@ export default {
   },
   data () {
     return {
-      login_title: this.$t('auth.login_title')
+      login_title: this.$t('auth.login_title'),
+      brands: [this.$t('brands.nike'), this.$t('brands.adi'), this.$t('brands.nb'), this.$t('brands.ln')]
     }
   }
 }
