@@ -1,3 +1,5 @@
+import { BUY } from '@/api/shop'
+
 const state = {
   list: [],
   checkoutStatus: null
@@ -30,6 +32,9 @@ const mutations = {
       id: payload.id,
       inventory: 1
     })
+  },
+  clearList () {
+    state.list = []
   }
 }
 
@@ -38,24 +43,17 @@ const actions = {
     commit,
     state
   }, payload) {
-    console.log(payload)
     const {
       id,
       inventory
     } = payload
-    console.log(id, inventory)
-
     if (inventory) {
       const item = state.list.find((ele) => ele.id === id)
       if (item) {
-        console.log(111)
-
         commit('updateList', {
           id
         })
       } else {
-        console.log(222)
-
         commit('pushList', {
           id
         })
@@ -67,11 +65,25 @@ const actions = {
       root: true
     })
   },
-  syncbuy ({
+  syncBUY ({
     commit,
     state
   }, payload) {
-    console.log('BUY')
+    const saveList = [...state.list]
+    commit('clearList')
+    BUY(saveList,
+      () => {
+        console.log('true')
+        state.checkoutStatus = 'success'
+      },
+      () => {
+        console.log('false')
+        state.list = saveList
+        state.checkoutStatus = 'false'
+        setTimeout(() => {
+          state.checkoutStatus = null
+        }, 1000)
+      })
   }
 }
 

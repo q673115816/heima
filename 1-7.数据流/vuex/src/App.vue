@@ -31,7 +31,7 @@ export default {
   },
   data () {
     return {
-      login_title: this.$t('auth.login_title'),
+      message_title: this.$t('message.title'),
       brands: [this.$t('brands.nike'), this.$t('brands.adi'), this.$t('brands.nb'), this.$t('brands.ln')]
     }
   }

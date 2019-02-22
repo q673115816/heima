@@ -12,20 +12,22 @@
       </li>
     </ul>
     <p>total: {{cartTotal}}</p>
-    <button @click="syncbuy()" :disabled="!cartProducts.length">Check out</button>
+    <button @click="syncBUY()" :disabled="!cartProducts.length">Check out</button>
+    <p v-if="checkoutStatus">{{checkoutStatus}}</p>
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
-  state: {
-    ...mapState('cart', ['checkoutStatus'])
-  },
   computed: {
-    ...mapGetters('cart', ['cartProducts', 'cartTotal'])
+    ...mapState('cart', ['checkoutStatus']),
+    ...mapGetters('cart', ['cartProducts', 'cartTotal']),
+    msg () {
+      return 'a'
+    }
   },
-  mothods: {
-    ...mapActions('cart', ['syncbuy'])
+  methods: {
+    ...mapActions('cart', ['syncBUY'])
   }
 }
 </script>

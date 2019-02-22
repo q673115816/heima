@@ -1,8 +1,8 @@
-const request = require('../../utils/request')
+const request = require('../utils/request')
 
-const user = require('../../service/user')
+const user = require('../service/user')
 
-const apiSignup = async (req, res) => {
+const signup = async (req, res) => {
     console.log('注册请求:');
     const {
         body
@@ -55,4 +55,4 @@ const apiSignup = async (req, res) => {
 
 
 
-module.exports = apiSignup
+module.exports = signup

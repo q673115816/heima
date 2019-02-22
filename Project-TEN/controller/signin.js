@@ -1,8 +1,8 @@
-const request = require('../../utils/request')
+const request = require('../utils/request')
 const url = '/users/signin'
 
 
-const apiSignin = async (req, res) => {
+const signin = async (req, res) => {
     console.log('登录请求:');
     const {
         body
@@ -35,4 +35,4 @@ const apiSignin = async (req, res) => {
 
 
 
-module.exports = apiSignin
+module.exports = signin
