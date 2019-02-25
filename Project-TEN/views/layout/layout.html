@@ -23,7 +23,27 @@
         {% include './footer.html' %}
     </div>
     <script src="/lib/jquery/jquery.js"></script>
-    <!-- <script src="/lib/bootstrap/js/bootstrap.js"></script> -->
+    <script src="/lib/bootstrap/js/bootstrap.js"></script>
+    <script>
+        $(function () {
+            let user = localStorage.getItem('user')
+            if (!user) {
+                console.log('未登陆');
+                $('.LOGIN').text('未登陆')
+                return false
+            }
+            user = JSON.parse(user)
+            const time = new Date()
+            if (user.time - time > 0) {
+                console.count('未过期');
+                $('.LOGIN').text('登陆')
+            } else {
+                console.log('已过期');
+                localStorage.removeItem('user')
+                $('.LOGIN').text('未登陆')
+            }
+        })
+    </script>
     {% block foot%}
     {% endblock %}
 </body>

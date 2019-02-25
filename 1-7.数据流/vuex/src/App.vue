@@ -13,6 +13,7 @@
         <li v-for="(brand, index) in brands" :key="index">{{brand}}</li>
       </ul>
     </div>
+<forms :type="'mobile'"></forms>
   </div>
 </template>
 
@@ -21,9 +22,12 @@ import products from './components/products'
 import cart from './components/cart'
 // import foo from './components/foo'
 // import bar from './components/bar'
+
+import forms from './components/form'
 export default {
   name: 'app',
   components: {
+    forms,
     products,
     cart
     // foo,

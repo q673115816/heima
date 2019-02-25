@@ -7,14 +7,12 @@ async function profile(req, res) {
     console.log(id);
     console.log(body);
 
-    const result = await user.updateUser(id, body)
-    console.log(result);
-    
-    // res.status(200).json({
-    //     msg: '更新成功',
-    //     result,
-    //     code: 200
-    // })
+    const {data} = await user.updateUser(id, body)
+    res.status(200).json({
+        data,
+        msg: '更新成功',
+        code: 200
+    })
 }
 
 

@@ -11,3 +11,7 @@ html,body {
 .main {
     flex: auto;
 }
+
+.LOGIN {
+    color: #fff;
+}

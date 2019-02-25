@@ -25,7 +25,7 @@ const updateRoute = async (req, res) => {
     console.log('进入更新');
     
     const id = req.params.id
-    const data = await user.findUserById(id)
+    const { data } = await user.findUserById(id)
     console.log(data);
     res.render('update.html', {data})
 }

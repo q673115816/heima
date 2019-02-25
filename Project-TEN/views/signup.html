@@ -60,7 +60,7 @@
             let result = $(this).serialize()
 
             console.log(result);
-            
+
             $.ajax({
                 url: '/api/signup',
                 type: 'POST',
@@ -89,7 +89,18 @@
                 dataType: 'json',
                 success: function (res) {
                     console.log(res);
+                    const {data} = res
                     if (res.code === 200) {
+                        const time = +new Date() + 1 * 60 * 1000
+                        var user = {
+                            urlToken: data.urlToken,
+                            time
+                        }
+                        console.log(user);
+                        console.log(time);
+                        
+                        
+                        localStorage.setItem('user', JSON.stringify(user))
                         location.href = '/home'
                     }
                 },

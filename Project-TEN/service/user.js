@@ -1,11 +1,7 @@
 const request = require('../utils/request')
 
 async function signup(user) {
-    console.log(user);
-    
-     const {
-         result
-     } = await request({
+     const result = await request({
             method: 'POST',
             url: '/users/signup',
             data: user,
@@ -13,9 +9,18 @@ async function signup(user) {
         return result
 }
 
+async function signin(user) {
+     const result = await request({
+            method: 'POST',
+            url: '/users/signin',
+            data: user,
+        })
+        return result
+}
+
 
 async function findUserBynickname(nickname) {
-    const { result } = await request({
+    const result = await request({
         url: '/users',
         params: nickname
     })
@@ -33,9 +38,7 @@ async function findUserByusername(username) {
 }
 
 async function findUserById(id) {
-    const {
-        result
-    } = await request({
+    result = await request({
         url: `/users/${id}`
     })
     return result
@@ -50,13 +53,13 @@ async function deteleUserById(id) {
 }
 
 async function updateUser(id, data) {
-    console.log('updateUser');
-    
     const result = await request({
         method: 'PATCH',
         url: `/users/${id}/profile`,
         data
     }) 
+    console.log('updateUser', result);
+    
     return result
 }
 
@@ -65,6 +68,7 @@ async function updateUser(id, data) {
 
 module.exports = {
     signup,
+    signin,
     deteleUserById,
     findUserById,
     findUserBynickname,

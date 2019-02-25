@@ -1,5 +1,3 @@
-const request = require('../utils/request')
-
 const user = require('../service/user')
 
 const signup = async (req, res) => {
@@ -13,44 +11,28 @@ const signup = async (req, res) => {
         password
     } = body
 
-    try {
-        const data = await user.signup({
-            nickname,
-            email,
-            password
+    const hasNickname = await user.findUserBynickname({
+        nickname
+    })
+    if(hasNickname.data.length > 0) {
+        res.status(409).json({
+            msg: '昵称已存在',
+            code: 409
         })
-
-        res.status(200).json({
-            data,
-            msg: '注册成功',
-            code: 200
-        })
-
-    } catch (err) {
-
-        console.log('错误：', err);
-        res.send(err)
-
+        return false;
     }
-    // request({
-    //         method: 'post',
-    //         url: url,
-    //         data: body,
-    //     })
-    //     .then(({
-    //         status: code,
-    //         data
-    //     }) => {
-    //         console.log('注册成功：', data);
-    //         res.status(code).json({
-    //             data,
-    //             msg: '注册成功',
-    //             code
-    //         })
-    //     }).catch(err => {
-    //         console.log('错误：', err);
-    //         res.send(err)
-    //     })
+
+    const {data} = await user.signup({
+        nickname,
+        email,
+        password
+    })
+
+    res.status(200).json({
+        data,
+        msg: '注册成功',
+        code: 200
+    })
 }
 
 

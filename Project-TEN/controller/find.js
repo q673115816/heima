@@ -6,7 +6,7 @@ async function find(req, res) {
         nickname
     } = req.body
     
-    const data = await user.findUserBynickname(nickname)
+    const { data } = await user.findUserBynickname(nickname)
     
     res.status(200).json({
         data,

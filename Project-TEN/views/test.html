@@ -31,6 +31,7 @@
         {% endfor %}
     </tbody>
 </table>
+<p class="p-3 bg-secondary text-white text-center noMessage" style="display: none;">没有数据</p>
 {% endblock %}
 
 {% block foot %}
@@ -47,6 +48,9 @@
                         data
                     } = res
                     let result = ''
+                    if(data.length <=0) {
+                        $('.noMessage').show()
+                    }
                     data.forEach((ele, ind) => {
                         const {
                             email,
