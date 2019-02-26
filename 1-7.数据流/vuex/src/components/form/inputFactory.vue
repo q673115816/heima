@@ -13,7 +13,12 @@ const inputMap = {
   username
 }
 export default {
-  props: ['name', 'status', 'type'],
+  props: {
+    type: {
+      type: String,
+      required: true
+    }
+  },
   computed: {
     comInput () {
       return inputMap[this.type]

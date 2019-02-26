@@ -35,7 +35,7 @@
             user = JSON.parse(user)
             const time = new Date()
             if (user.time - time > 0) {
-                console.count('未过期');
+                console.log('未过期');
                 $('.LOGIN').text('登陆')
             } else {
                 console.log('已过期');
