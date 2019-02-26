@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 import * as serviceWorker from './serviceWorker';
 
 import tt from './reducer'
 
-import { createStore } from 'redux' 
+import { createStore, applyMiddleware } from 'redux' 
 
 
 function Reducer(state = 0, action) {
@@ -20,45 +23,54 @@ function Reducer(state = 0, action) {
     }
 }
 
-const store = createStore(Reducer, 100)
+const store = createStore(Reducer, 10, applyMiddleware(logger, thunk))
 
-const test = createStore(tt)
+const dispatch = store.dispatch
+// const test = createStore(tt)
 
 
 console.log(store.getState());
-console.log(test.getState());
+// console.log(test.getState());
 
-setTimeout(() => {
-    test.dispatch({
-        type: 'change_username',
-        payload: '666'
-    })
-    console.log(store.getState());
+// setTimeout(() => {
+//     test.dispatch({
+//         type: 'change_username',
+//         payload: '666'
+//     })
+//     console.log(store.getState());
 
-}, 500);
+// }, 500);
 
-setTimeout(() => {
-    test.dispatch({
-        type: 'change_nickname',
-        payload: 'nickname'
-    })
-    console.log(store.getState());
+// store.dispatch = function (action) {
+//     console.log('action', action);
+//     dispatch(action)
+//     console.log('store', store.getState());
+    
+// }
 
-}, 1100);
+// setTimeout(() => {
+//     test.dispatch({
+//         type: 'change_nickname',
+//         payload: 'nickname'
+//     })
+//     console.log(store.getState());
+
+// }, 1100);
 
 
-setTimeout(() => {
-    store.dispatch({
-        type: 'INCREMENT'
-    })
-}, 1000);
+// setTimeout(() => {
+//     store.dispatch({
+//         type: 'INCREMENT'
+//     })
+// }, 1000);
 
 
-test.subscribe(() => {
-console.log(test.getState());
-})
+// test.subscribe(() => {
+// console.log(test.getState());
+// })
 
 store.subscribe(() => {
+    render()
     // console.log(store.getState());
 })
 
@@ -66,15 +78,40 @@ const Counter = (props) => {
     return (
         <div>
             <h1>{props.title}</h1>
-            <button>Increment</button>
-            <button>Decrement</button>
+            <button onClick={props.Increment}>Increment</button>
+            <button onClick={props.asyncIncrement}>Increment</button>
         </div>
     )
 }
 
+function INCREMENT() {
+    return {
+            type: 'INCREMENT'
+        }
+}
+
+function asyncIncrement() {
+    return function (dispatch, getState) {
+        setTimeout(() => {
+            console.log(111);
+            
+            dispatch(INCREMENT())
+        }, 1000);
+    }
+}
+
 render()
 function render() {
-    ReactDOM.render(<App />, document.getElementById('root'));
+    ReactDOM.render( < Counter title = {
+                store.getState()
+            }
+            Increment = {
+                () => store.dispatch(INCREMENT())
+            }
+            asyncIncrement = {
+                () => store.dispatch(asyncIncrement())
+            }
+            />, document.getElementById('root'));
 }
 
 
