@@ -10,6 +10,7 @@
 </template>
 <script>
 export default {
+    layout: 'header',
     data() {
         return {
             student: [

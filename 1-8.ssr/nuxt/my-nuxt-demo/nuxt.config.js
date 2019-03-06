@@ -28,12 +28,16 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '~/assets/css/index.css',
+    'element-ui/lib/theme-chalk/index.css'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    // ssr表示只在服务器端开启
+    {src:'~/plugins/ElementUI', ssr: true }
   ],
 
   /*
@@ -51,6 +55,8 @@ module.exports = {
     */
     extend(config, ctx) {
       
-    }
+    },
+    // 防止element-ui被多次打包
+    vender: ['element-ui']
   }
 }
