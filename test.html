@@ -9,17 +9,16 @@
 </head>
 
 <body>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        function test() {
-            const str = 1
-            return (function (a, b) {
-                console.log(str + a + b);
-
-            })(1, 2)
-        }
-        
-        console.log(test());
-        
+        $(function () {
+            $.ajax({
+                url: 'http://localhost:3001/qwer',
+                success: function (res) {
+                    console.log(res)
+                }
+            })
+        })
     </script>
 </body>
 

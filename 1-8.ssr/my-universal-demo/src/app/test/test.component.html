@@ -1,0 +1,10 @@
+<div>
+  <p>{{msg}}</p>
+  
+  <p [title]="msg">hello</p>
+  
+  <input type="text" [(ngModel)]="msg">
+  <button (click)="sayHello()">sayHello</button>
+  <a [routerLink]="[ '/link']">to link</a>
+<a (click)="jumpTolink()">jumpTolink</a>
+</div>
