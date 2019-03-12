@@ -1,13 +1,3 @@
 <template>
-<div>
-    <h2>电影首页</h2>
-    <nuxt-child/>
-</div>
+    <h2>电影首页</h2>    
 </template>
-
-<script>
-export default {
-    layout: 'movielayout',
-
-}
-</script>
