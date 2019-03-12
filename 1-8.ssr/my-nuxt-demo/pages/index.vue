@@ -4,7 +4,6 @@
     <button @click="jumpTo">跳转到car页面</button>
     <nuxt-link to="/teather">老师页面</nuxt-link>
     <el-button>elementUI test</el-button>
-    </div>
   </section>
 </template>
 
