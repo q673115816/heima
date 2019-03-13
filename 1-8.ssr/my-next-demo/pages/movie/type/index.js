@@ -1,33 +1,36 @@
 import Link from 'next/link'
-import jsonp from 'jsonp'
+import jsonp from 'isomorphic-unfetch'
 const type = (props) => {
-    console.log(props)
-    // const {data} = props
-    // const {subjects} = data
-    return (
-        <div className="movieType">
-            电影列表页
-            {/* {subjects.map(item => {
-                return (<Link href="/movie/detail" key={item}>
-                <div className="movieBox">
-                        <img src={item.images.medium} alt={item.title}/>
-                    <p></p>
-                </div>
-            </Link>)
-            })} */}
-            
-        </div>
-    )
+    const {
+        movieList
+    } = props
+        return (
+            <div className="movie-list">
+                {
+                    movieList.map(item => {
+                    return (<Link href="/movie/detail" key={item.id}>
+                        <div className="movie-box">
+                            <a>
+                                <img src={item.img} alt={item.title}/>
+                                <p>电影： {item.title}</p>
+                                <p>类型： {item.genres.join(',')}</p>
+                                <p>评分： {item.rating}</p>
+                            </a>
+                        </div>
+                    </Link>)
+                    })
+                }
+            </div>
+        )
 }
 
 type.getInitialProps = async (context) => {
-
-    jsonp('https://api.douban.com/v2/movie/in_theaters', null, function(req, res) {
-        console.log(req,res)
-    })
+    const {query} = context
+    var data = await jsonp(`http://localhost:3001/${query.type}`)
+    var movieList = await data.json()
     
     return {
-        // data
+        movieList
     }
 }
 

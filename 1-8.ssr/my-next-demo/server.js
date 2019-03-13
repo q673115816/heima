@@ -14,13 +14,14 @@ app.prepare()
 
 
 
-        // server.get('/movie/:id', (req, res) => {
-        //     const actualPage = '/movie/tpye'
-        //     const queryParams = {
-        //         id: req.params.type
-        //     }
-        //     app.render(req, res, actualPage, queryParams)
-        // })
+        server.get('/movie/:type', (req, res) => {
+            console.log(req,res)
+            const actualPage = '/movie/tpye'
+            const queryParams = {
+                type: req.params.type
+            }
+            app.render(req, res, actualPage, queryParams)
+        })
 
 
         server.get('/next-route/teather/:id', (req, res) => {

@@ -5,11 +5,11 @@ const Movielayout = (props) => {
     return (
 
         <div className="movielayout">   
-        <Moviehead></Moviehead>
-        <Movienav></Movienav>
-        {
-            props.children
-        }
+            <Moviehead></Moviehead>
+            <Movienav></Movienav>
+            {
+                props.children
+            }
         </div>
     )
 }

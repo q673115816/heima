@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1162,8 +1162,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var jsonp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jsonp */ "jsonp");
-/* harmony import */ var jsonp__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jsonp__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -1171,12 +1171,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var type = function type(props) {
-  console.log(props); // const {data} = props
-  // const {subjects} = data
-
+  var movieList = props.movieList;
   return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    className: "movieType"
-  }, "\u7535\u5F71\u5217\u8868\u9875");
+    className: "movie-list"
+  }, movieList.map(function (item) {
+    return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      href: "/movie/detail",
+      key: item.id
+    }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+      className: "movie-box"
+    }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
+      src: item.img,
+      alt: item.title
+    }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, "\u7535\u5F71\uFF1A ", item.title), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, "\u7C7B\u578B\uFF1A ", item.genres.join(',')), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, "\u8BC4\u5206\uFF1A ", item.rating))));
+  }));
 };
 
 type.getInitialProps =
@@ -1185,16 +1193,27 @@ function () {
   var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
   /*#__PURE__*/
   _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(context) {
+    var query, data, movieList;
     return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            jsonp__WEBPACK_IMPORTED_MODULE_4___default()('https://api.douban.com/v2/movie/in_theaters', null, function (req, res) {
-              console.log(req, res);
-            });
-            return _context.abrupt("return", {});
+            query = context.query;
+            _context.next = 3;
+            return isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()("http://localhost:3001/".concat(query.type));
 
-          case 2:
+          case 3:
+            data = _context.sent;
+            _context.next = 6;
+            return data.json();
+
+          case 6:
+            movieList = _context.sent;
+            return _context.abrupt("return", {
+              movieList: movieList
+            });
+
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -1211,14 +1230,14 @@ function () {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!*****************************************!*\
   !*** multi ./pages/movie/type/index.js ***!
   \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! c:\Users\admin\Desktop\heima\1-8.ssr\my-next-demo\pages\movie\type\index.js */"./pages/movie/type/index.js");
+module.exports = __webpack_require__(/*! C:\Users\lin\Desktop\heima\1-8.ssr\my-next-demo\pages\movie\type\index.js */"./pages/movie/type/index.js");
 
 
 /***/ }),
@@ -1333,14 +1352,14 @@ module.exports = require("core-js/library/fn/symbol/iterator");
 
 /***/ }),
 
-/***/ "jsonp":
-/*!************************!*\
-  !*** external "jsonp" ***!
-  \************************/
+/***/ "isomorphic-unfetch":
+/*!*************************************!*\
+  !*** external "isomorphic-unfetch" ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("jsonp");
+module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 
