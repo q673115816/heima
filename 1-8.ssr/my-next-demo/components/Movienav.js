@@ -3,6 +3,11 @@ function Movienav() {
   return (
     <div className="movieNav">
         < Link
+        as={
+            {
+                pathname: '/movie/in_theaters'
+            }
+        }
         href = {
             {
                 pathname: '/movie/type',
@@ -13,7 +18,10 @@ function Movienav() {
         } >
             <a  className="movie-link">正在热映</a>
         </Link>
-        < Link href = "/movie/type?type=top250">
+        < Link as = {
+            "/movie/top250"
+        }
+        href = "/movie/type?type=top250" >
             <a  className="movie-link">TOP250</a>
         </Link>
         <style jsx>{
