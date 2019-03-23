@@ -1,0 +1,115 @@
+{% extends "./layout/layout.html" %}
+
+
+{% block main %}
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" name="nickname" placeholder="nickname" aria-label="Searchnickname">
+        <input class="form-control mr-sm-2" type="search" name="username" placeholder="username" aria-label="Searchusername">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">email</th>
+            <th scope="col">nickname</th>
+            <th scope="col">gender</th>
+            <th scope="col">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in arr %}
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td><button type="button" class="btn btn-danger">Del</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p class="p-3 bg-secondary text-white text-center noMessage" style="display: none;">没有数据</p>
+{% endblock %}
+
+{% block foot %}
+<script>
+    $(function () {
+        $('.form-inline').on('submit', function () {
+            var result = $(this).serialize()
+            console.log(result);
+            $.ajax({
+                url: '/api/find',
+                data: result,
+                success: function (res) {
+                    const {
+                        data
+                    } = res
+                    let result = ''
+                    if(data.length <=0) {
+                        $('.noMessage').show()
+                    }
+                    data.forEach((ele, ind) => {
+                        const {
+                            email,
+                            gender,
+                            nickname,
+                            _id
+                        } = ele
+                        let str =
+                            `<tr data-id="${_id}">
+                                <th scope="row">${ind + 1}</th>
+                                <td>${email}</td>
+                                <td>${nickname}</td>
+                                <td>${gender}</td>
+                                <td>
+                                    <a href="/update/${_id}" class="btn btn-info btn-update">update</a>
+                                    <button type="button" class="btn btn-danger btn-del">Del</button>
+                                </td>
+                            </tr>`
+                        result += str
+                    });
+
+                    document.querySelector('tbody').innerHTML = result
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+            return false;
+        })
+
+        function del(id) {
+            var that = this
+            $.ajax({
+                method: 'DELETE',
+                url: '/api/delete/' + id,
+                success: function (res) {
+                    console.log(res);
+                    $(that).parents('tr').remove();
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+
+        $('tbody').on('click', '.btn-del', function () {
+            const id = $(this).parents('tr').data('id')
+            del.call(this, id)
+        })
+        
+        $.ajax({
+            url: '/api/find',
+            success: function (res) {
+                console.log(res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    })
+</script>
+{% endblock %}

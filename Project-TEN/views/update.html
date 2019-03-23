@@ -1,0 +1,166 @@
+{% extends "./layout/layout.html" %}
+
+{% block main%}
+<div class="container">
+    <form data-id="{{ data._id }}">
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="username" placeholder="username" value="{{ data.username }}"
+                    disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">nickname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="nickname" placeholder="nickname" value="{{ data.nickname }}"
+                    disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" name="email" placeholder="email" value="{{ data.email }}"
+                    disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="name" placeholder="name" value="{{ data.name }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">cellphone</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" name="cellphone" placeholder="cellphone" value="{{ data.cellphone }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">bio</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="bio" placeholder="bio" value="{{ data.bio }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">birthday</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="birthday" placeholder="birthday" value="{{ data.birthday }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">location</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="location" placeholder="location" value="{{ data.location }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">skills</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="skills" placeholder="skills" value="{{ data.skills }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">website</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="website" placeholder="website" value="{{ data.website }}">
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">gender</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender" value="保密"
+                                {{ "checked" if data.gender == '保密' else "" }}>
+                            保密
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender" value="男"
+                                {{ "checked" if data.gender == '男' else "" }}>
+                            男
+                        </label>
+                    </div>
+                    <div class="form-check disabled">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender" value="女"
+                                {{ "checked" if data.gender == '女' else "" }}>
+                            女
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <div class="col-sm-2">Checkbox</div>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                    <label class="form-check-label" for="gridCheck1">
+                        Example checkbox
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary btn-update">UPDATE</button>
+            </div>
+        </div>
+    </form>
+    <div id="updataModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>更新成功</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block foot%}
+<script>
+    $(function () {
+        $('form').on('submit', function () {
+            let arr = $(this).serialize()
+            console.log(arr);
+            let id = $(this).data('id')
+            console.log(id);
+
+            $.ajax({
+                method: 'PATCH',
+                url: `/api/${id}/profile`,
+                data: arr,
+                success: function (res) {
+                    console.log(res);
+                    $('#updataModal').modal('toggle')
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+            return false;
+        })
+
+        function update(data) {
+            var that = this
+
+        }
+    })
+</script>
+{% endblock %}
