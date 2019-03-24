@@ -12,12 +12,16 @@
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(function () {
-            $.ajax({
-                url: 'http://localhost:3001/qwer',
-                success: function (res) {
-                    console.log(res)
+            var a = {
+                aa: 'aa',
+                bb: {
+                    bbb: 'bbb'
                 }
-            })
+            }
+            var b = a
+            b.aa = 'bb'
+            console.log(a)
+            console.log(b)
         })
     </script>
 </body>

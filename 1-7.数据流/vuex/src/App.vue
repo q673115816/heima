@@ -13,6 +13,9 @@
         <li v-for="(brand, index) in brands" :key="index">{{brand}}</li>
       </ul>
     </div>
+    <select @change="trans()">
+      <option v-for="(lang, index) in lang" :key="index" :value="lang">{{lang}}</option>
+    </select>
 <forms :type="'mobile'"></forms>
   </div>
 </template>
@@ -36,8 +39,18 @@ export default {
   data () {
     return {
       message_title: this.$t('message.title'),
-      brands: [this.$t('brands.nike'), this.$t('brands.adi'), this.$t('brands.nb'), this.$t('brands.ln')]
+      brands: [this.$t('brands.nike'), this.$t('brands.adi'), this.$t('brands.nb'), this.$t('brands.ln')],
+      lang: this.$t('base.lang')
     }
+  },
+  methods: {
+    trans (e) {
+      console.log(e)
+      localStorage.setItem('lang', 'en')
+    }
+  },
+  created () {
+    console.log(localStorage.getItem('lang'))
   }
 }
 </script>
