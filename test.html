@@ -11,18 +11,28 @@
 <body>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        $(function () {
-            var a = {
-                aa: 'aa',
-                bb: {
-                    bbb: 'bbb'
+
+        Notification.requestPermission().then(function (permission) {
+                if (permission === 'granted') {
+                    console.log('用户允许通知');
+                } else if (permission === 'denied') {
+                    console.log('用户拒绝通知');
                 }
+            });
+        
+        if (Notification.permission === 'granted') {
+                console.log('用户允许通知');
+            } else if (Notification.permission === 'denied') {
+                console.log('用户拒绝通知');
+            } else {
+                console.log('用户还没选择，去向用户申请权限吧');
             }
-            var b = a
-            b.aa = 'bb'
-            console.log(a)
-            console.log(b)
-        })
+        var n = new Notification('状态更新提醒', {
+                body: '你的朋友圈有3条新状态，快去查看吧',
+                tag: 'linxin',
+                icon: 'http://blog.gdfengshuo.com/images/avatar.jpg',
+                requireInteraction: true
+            })
     </script>
 </body>
 
