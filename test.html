@@ -9,30 +9,23 @@
 </head>
 
 <body>
+    <div>
+        <a href="mailto:673115816@qq.com">Send email to nowhere</a>
+        <div id="example">
+        </div>
+        <button id="button">Not tomato</button>
+    </div>
+    
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
 
-        Notification.requestPermission().then(function (permission) {
-                if (permission === 'granted') {
-                    console.log('用户允许通知');
-                } else if (permission === 'denied') {
-                    console.log('用户拒绝通知');
-                }
-            });
-        
-        if (Notification.permission === 'granted') {
-                console.log('用户允许通知');
-            } else if (Notification.permission === 'denied') {
-                console.log('用户拒绝通知');
-            } else {
-                console.log('用户还没选择，去向用户申请权限吧');
-            }
-        var n = new Notification('状态更新提醒', {
-                body: '你的朋友圈有3条新状态，快去查看吧',
-                tag: 'linxin',
-                icon: 'http://blog.gdfengshuo.com/images/avatar.jpg',
-                requireInteraction: true
-            })
+        const shadowRoot = document.getElementById('example').attachShadow({ mode: 'open' });
+            shadowRoot.innerHTML = `<style>
+button {
+  color: tomato;
+}
+</style>
+<button id="button">This will use the CSS color tomato <slot></slot></button>`;
     </script>
 </body>
 
