@@ -10,5 +10,11 @@ module.exports = {
     adi: '阿迪达斯',
     nb: '新百伦',
     ln: '李宁'
+  },
+  base: {
+    lang: {
+      cn: 'chinese',
+      en: 'engilsh'
+    }
   }
 }
