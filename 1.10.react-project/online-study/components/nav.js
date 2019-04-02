@@ -1,12 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-
-const links = [
-  { href: 'https://github.com/segmentio/create-next-app', label: 'Github' }
-].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`
-  return link
-})
+import {Button} from 'antd'
 
 const Nav = () => (
   <nav>
@@ -16,15 +10,10 @@ const Nav = () => (
           <a>Home</a>
         </Link>
       </li>
-      <ul>
-        {links.map(({ key, href, label }) => (
-          <li key={key}>
-            <Link href={href}>
-              <a>{label}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <li>
+        <Button type="primary" icon="search">搜索</Button>
+        <Button type="danger" size="large">Danger</Button>
+      </li>
     </ul>
 
     <style jsx>{`
