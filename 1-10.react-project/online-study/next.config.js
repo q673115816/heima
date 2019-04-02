@@ -10,15 +10,14 @@ module.exports = Object.assign({},
   withCSS(withLess({
     // 开启Less模块化，但是同时也会开启css的模块化，这样会使得antd的样式加载不成功
     cssModules: true,
-    lessLoaderOptions: {
-      javascriptEnabled: true
-    },
+    // lessLoaderOptions: {
+    //   javascriptEnabled: true
+    // },
     webpack(config, {
       isServer
     }) {
-      // console.log(config.module.rules[2].use[2])
       if (!isServer) {
-
+        console.log(config.module.rules[2].use[2].options)
         // 关闭css模块化,使antd样式生效
         // config.module.rules[2].use[2].options.modules = false;
       }
@@ -31,13 +30,3 @@ module.exports = Object.assign({},
   }))
 )
 
-
-/* eslint-disable */
-// const withCss = require('@zeit/next-css')
-
-// // fix: prevents error when .css files are required by node
-// if (typeof require !== 'undefined') {
-//   require.extensions['.css'] = file => {}
-// }
-
-// module.exports = withCss()
