@@ -15,17 +15,20 @@
         </div>
         <button id="button">Not tomato</button>
     </div>
-    
+
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
-
-        const shadowRoot = document.getElementById('example').attachShadow({ mode: 'open' });
-            shadowRoot.innerHTML = `<style>
-button {
-  color: tomato;
-}
-</style>
-<button id="button">This will use the CSS color tomato <slot></slot></button>`;
+        $(function() {
+            const test = Symbol('abc')
+            console.log(test)
+            const obj = {}
+            obj[test] = '123'
+            obj['abc'] = '666'
+            console.log(obj);
+            console.log(test in obj);
+            console.log(Object.keys(obj));
+            console.log(obj[Reflect.ownKeys(obj)[1]])
+        })
     </script>
 </body>
 
