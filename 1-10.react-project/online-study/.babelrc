@@ -1,14 +1,14 @@
 {
-  // next/babel 负责解析jsx语法，不然return  <div></div> 报错
-  "presets": ["next/babel"],
-  // 按需加载antd的babel-plugin-import插件固有配置
+  "presets": [
+    "next/babel"
+  ],
   "plugins": [
     [
-      // import 是 babel-plugin-import这个包的简写
       "import",
       {
         "libraryName": "antd",
-        "style": "css"
+        "libraryDirectory": "lib",
+        "style": true
       }
     ]
   ]
