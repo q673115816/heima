@@ -1,17 +1,23 @@
 import {
-    createStore
+    createStore,
+    combineReducers
 } from 'redux'
 
 
-import product from './product'
-import cart from './cart'
+import productReducer from './product'
+import cartReducer from './cart'
 
 
-function store (state = {}, action = {}) {
-    return {
-        product: product(state, action),
-        cart: cart(state, action)
-    }
-}
+const rootReducer = combineReducers({
+    productReducer,
+    cartReducer
+})
 
-export default createStore(store)
+// function store (state = {}, action = {}) {
+//     return {
+//         product: productReducer(state, action),
+//         cart: cartReducer(state, action)
+//     }
+// }
+
+export default createStore(rootReducer)

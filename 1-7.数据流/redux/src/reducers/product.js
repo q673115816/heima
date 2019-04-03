@@ -1,7 +1,7 @@
-import {getAllProducts} from '../api/shop'
+import {getAllProducts} from 'src/api/shop'
 
 const initialState = {
-     all: []
+     all: [...getAllProducts()]
  }
  
  

@@ -10,10 +10,9 @@ import store from './reducers'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render( 
-    <App></App>
-    // <Provider store={store}>
-    //     <App/>
-    // </Provider>
+    <Provider store={store}>
+        <App/>
+    </Provider>
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

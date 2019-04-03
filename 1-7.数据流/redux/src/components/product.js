@@ -12,9 +12,19 @@ import React from 'react'
 // }
 
 function product(props) {
+  const {title, all} = props
     return (
          <div>
-        <h1>{props.title}</h1>
+        <h1>{'title'}</h1>
+        <ul>
+          {
+            // all.map(item => {
+            //   return (
+            //     <li>item</li>
+            //   )
+            // })
+          }
+        </ul>
       </div>
     )
 }

@@ -1,17 +1,19 @@
 import React from 'react'
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Home from '../pages/home'
 import Page from '../pages/page'
+import shop from '../pages/shop'
 
 const getRouter = () => (
-    <Router>
+    <BrowserRouter>
         <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/page" component={Page}></Route>
+            <Route exact path="/shop" component={shop}></Route>
         </Switch>
-    </Router>
+    </BrowserRouter>
 )
 
 export default getRouter
