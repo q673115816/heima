@@ -1,11 +1,14 @@
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const resolve = require('./unils/resolve')
 module.exports = {
-    mode: 'development',
-    devtool: 'inline-source-map',
+    mode: 'production',
+    devtool: 'none',
     entry: {
         app: [
+            '@babel/polyfill',
             resolve('../src/index.js')
         ],
         vendor: [
@@ -17,6 +20,7 @@ module.exports = {
         ]
     },
     output: {
+        pubilcPath: '/',
         path: resolve('../dist'),
         filename: '[name].[hash].js',
         chunkFilename: '[name].[chunkhash].js'
@@ -29,6 +33,11 @@ module.exports = {
             actions: resolve('../src/redux/actions'),
             reducers: resolve('../src/redux/reducers'),
             images: resolve('../src/images'),
+        }
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
         }
     },
     module: {
@@ -59,20 +68,18 @@ module.exports = {
             }]
         }]
     },
-    devServer: {
-        // contentBase: resolve('../dist'),
-        compress: true, // gzip压缩
-        host: '0.0.0.0', // 允许ip访问
-        hot: true, // 热更新
-        historyApiFallback: true, // 解决启动后刷新404
-        port: 8000 // 端口
-    },
     plugins: [
         new htmlWebpackPlugin({
             filename: 'index.html',
             template: resolve('../pubilc/index.html')
         }),
         new MiniCssExtractPlugin({
-        })
+            filename: '[name].[contenthash].css',
+            chunkFilename: '[id].[contenthash].css'
+        }),
+        new CleanWebpackPlugin({
+            path: resolve('../dist')
+        }),
+        new OptimizeCssAssetsPlugin()
     ]
 }
