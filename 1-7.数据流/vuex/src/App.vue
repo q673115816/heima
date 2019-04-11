@@ -10,5 +10,5 @@
 </template>
 
 <style lang="scss">
-@import url('./assets/scss/reset.scss');
+@import '~@/assets/scss/public.scss';
 </style>

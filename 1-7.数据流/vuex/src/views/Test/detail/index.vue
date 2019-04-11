@@ -2,10 +2,10 @@
     <div clas="testdetail">
         <div v-cloak v-if="item">
             {{item.text}}
-            <figure>
+            <figure class="max-box">
                 <img :src="item.cdn_img" alt="">
             </figure>
-            <video v-if="item.videouri" :src="item.videouri" controls></video>
+            <video v-if="item.videouri" :src="item.videouri" controls class="max-box"></video>
         </div>
     </div>
 </template>

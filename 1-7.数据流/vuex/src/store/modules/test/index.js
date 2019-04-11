@@ -4,13 +4,12 @@ export default {
     list: []
   },
   actions: {
-    asyncgetData ({ state }) {
-      this._vm.$fetch('test.getList')
+    asyncgetData ({ state, commit }, payload) {
+      this._vm.$fetch('test.getList', payload)
         .then(res => {
-          console.log(res)
           const { data } = res
           if (data.code === 200) {
-            state.list = data.data
+            state.list = state.list.concat(data.data)
           }
         })
     }
