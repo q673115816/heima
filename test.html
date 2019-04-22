@@ -14,25 +14,22 @@
         <div id="example">
         </div>
         <button id="button">Not tomato</button>
+        <input type="color" name="" id="">
     </div>
 
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        $(function() {
-            var myNameSpace = function() {
-                function init() {
-                    console.log('init')
-                }
-                
-                console.log(333);
-                
-                console.log('test');
-
-                return {
-                    init: init
-                }
-            }()
-            console.log(myNameSpace.init())
+        $(function () {
+            var arr = [function() {
+                return '1'
+            }, function() {
+                return '2'
+            }]
+            console.log(arr.toString());
+            
+            var str = Object.prototype.toString.call(arr)
+            console.log(str);
+            
         })
     </script>
 </body>
