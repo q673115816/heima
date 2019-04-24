@@ -3,18 +3,13 @@ import {
 } from 'react-redux'
 import cart from 'components/cart'
 
-const mapStateToProps = (state) => {
-    console.log(state);
-    
+function mapStateToProps(state) {
     return {
         // title: state.cart.title
     }
 }
 
-const mapDispatchToProps = (state) => {
-    return {
-
-    }
+const mapDispatchToProps = {
 }
 
 const cartContain = connect(

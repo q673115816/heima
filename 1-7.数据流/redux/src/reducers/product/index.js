@@ -1,9 +1,9 @@
-import {getAllProducts} from 'src/api/shop'
+import {INIT} from './action'
 
 const initialState = {
-     all: [...getAllProducts()]
+     all: []
  }
- 
+
  
  export default (state = initialState, action) => {
      const {
@@ -11,8 +11,9 @@ const initialState = {
          payload
      } = action
      switch (type) {
-         case 'add':
-         return state
+         case INIT: 
+         console.log('111');
+             return Object.assign({}, state, { all: payload.all })
          default:
              return state
      }
