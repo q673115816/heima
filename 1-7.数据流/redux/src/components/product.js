@@ -12,10 +12,15 @@ class product extends React.Component {
          <div>
            <h1>{this.props.title}</h1>
            <p>{this.props.test}</p>
+        <button onClick={this.props.addtest}>++</button>
         <ul>
           {
             all.map(item => (
-                <li>item</li>
+                <li key={item.id}>
+                {item.title} - {item.price} * {item.inventory}
+                <br/>
+                <button onClick={this.props.buy.bind(this, item.id)}>buy</button>
+                </li>
               )
             )
           }
