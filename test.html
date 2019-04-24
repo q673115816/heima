@@ -18,26 +18,49 @@
 
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        $(function() {
-            const test = Symbol('abc')
-            console.log(test)
-            const obj = {}
-            obj[test] = '123'
-            obj['abc'] = '666'
-            console.log(obj);
-            console.log(test in obj);
-            console.log(Object.keys(obj));
-            console.log(obj[Reflect.ownKeys(obj)[1]])
-        })
-        function ttt (fn1, fn2) {
-            console.log(fn2)
+        var number = 5;
+        var obj = {
+            number: 3,
+            fn1: (function () {
+                var number;
+                console.log('this', this.number)
+                console.log('test',number)
+                this.number *= 2;
+                console.log('test',number)
+
+                number = number * 2;
+                console.log('test',number)
+
+                number = 3;
+                console.log('test',number)
+
+                return function () {
+                console.log('test',number)
+
+                    var num = this.number;
+                    console.log('this2', this.number);
+                    
+                console.log('test',number)
+
+                    this.number *= 2;
+                console.log('test',number)
+
+                    console.log(num);
+                    number *= 3;
+                console.log('test',number)
+
+                    console.log(number);
+                }
+            })()
         }
-                const test = (param) => ({
-                    aa: param
-                })
-                test('555')
-                console.log(test(555));
-                
+        var fn1 = obj.fn1;
+        console.log(1111111);
+        
+        fn1.call(null);
+        console.log(22222222);
+        
+        obj.fn1();
+        console.log(window.number);
     </script>
 </body>
 

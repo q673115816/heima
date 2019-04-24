@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {getUserInfo} from "actions/userInfo";
 
 class UserInfo extends Component {
-
     render() {
-        const { userInfo={} } = this.props.userInfo;
+        const { userInfo = {} } = this.props;
         return (
             <div>
                 {
                     <div>
+                        <p>{this.props.test}</p>
                         <p>用户信息：</p>
                         <p>用户名：{userInfo.name}</p>
                         <p>介绍：{userInfo.intro}</p>
@@ -21,4 +21,4 @@ class UserInfo extends Component {
     }
 }
 
-export default connect((userInfo) => userInfo, {getUserInfo})(UserInfo);
+export default connect(({userInfo}) => userInfo, {getUserInfo})(UserInfo);

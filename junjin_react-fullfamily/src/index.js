@@ -6,7 +6,7 @@ import Nav from './components/Nav';
 import getRouter from './router';
 
 import store from './redux/store'
-import '../mock'
+import '../mock/index.js'
 
 ReactDom.render(
         <Provider store={store}>

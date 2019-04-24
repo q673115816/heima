@@ -6,6 +6,7 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: {
         app: [
+            '@babel/polyfill',
             resolve('../src/index.js')
         ],
         vendor: [
