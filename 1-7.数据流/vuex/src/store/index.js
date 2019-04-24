@@ -7,6 +7,8 @@ import bar from './bar'
 import products from './modules/products'
 import cart from './modules/cart'
 
+import test from './modules/test'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -14,7 +16,8 @@ const store = new Vuex.Store({
     foo,
     bar,
     products,
-    cart
+    cart,
+    test
   },
   state: {
     count: 0,

@@ -2,12 +2,12 @@ import Link from 'next/link'
 import jsonp from 'isomorphic-unfetch'
 const type = (props) => {
     const {
-        movieList
+        movieList = []
     } = props
         return (
             <div className="movie-list">
                 {
-                    movieList.map(item => {
+                    movieList && movieList.map && movieList.map(item => {
                     return (<Link href="/movie/detail" key={item.id}>
                         <div className="movie-box">
                             <a>
@@ -28,7 +28,6 @@ type.getInitialProps = async (context) => {
     const {query} = context
     var data = await jsonp(`http://localhost:3001/${query.type}`)
     var movieList = await data.json()
-    
     return {
         movieList
     }

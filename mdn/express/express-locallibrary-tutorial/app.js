@@ -6,12 +6,16 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var wiki = require('./wiki')
+var catalogRouter = require('./routes/catalog')
 var app = express();
 
+
 const mongoose = require('mongoose');
-const mongoDB = 'localhost:27017';
-mongoose.connect(mongoDB);
+const mongoDB = 'mongodb+srv://vcd:ACGlin@locallibrary-sayyy.mongodb.net/test?retryWrites=true';
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true
+} );
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB 连接错误：'));
@@ -28,7 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/wiki', wiki)
+app.use('/catalog', catalogRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
