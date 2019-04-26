@@ -2,18 +2,15 @@ import {
     connect
 } from 'react-redux'
 import product from 'components/product'
-import {init, addtest, buy} from 'src/reducers/product/action'
+import {buy} from 'src/reducers/product/action'
 const mapStateToProps = (state) => {
     return {
-        // title: state.cart.title
+        title: state.product.title,
         all: state.product.all,
-        test: state.product.test,
     }
 }
 
 const mapDispatchToProps = {
-    init,
-    addtest,
     buy
 }
 

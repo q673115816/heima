@@ -5,7 +5,8 @@ import cart from 'components/cart'
 
 function mapStateToProps(state) {
     return {
-        // title: state.cart.title
+        title: state.cart.title,
+        list: state.cart.list
     }
 }
 

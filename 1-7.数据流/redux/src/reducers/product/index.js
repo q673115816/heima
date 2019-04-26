@@ -1,8 +1,29 @@
-import { INIT, TEST, BUY } from './action'
+import { INIT, ADD_CART } from 'src/actionType'
 
 const initialState = {
     all: [],
-    test: 0
+    title: 'product'
+}
+
+function buy(state = initialState.all, action) {
+    const {
+        type,
+        payload
+    } = action
+    switch(type) {
+        case INIT:
+            return [...state, ...payload.all]
+        case ADD_CART:
+        return state.map(item => {
+            if (item.id === payload.id && item.inventory > 0) {
+                return { ...item, inventory: --item.inventory }
+            }else {
+                return item
+            }
+        })
+        default: 
+        return state
+    }
 }
 
 
@@ -12,13 +33,10 @@ export default (state = initialState, action) => {
         payload
     } = action
     switch (type) {
-        case INIT:
-            return Object.assign({}, state, { all: payload.all })
-        case BUY:
-            return state
-        case TEST:
-            return {...state, test: state.test + 1}
         default:
-            return state
+            return {
+                ...state,
+                all: buy(state.all, action)
+            }
     }
 };
