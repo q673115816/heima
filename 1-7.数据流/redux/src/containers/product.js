@@ -1,7 +1,7 @@
 import {
     connect
 } from 'react-redux'
-import product from 'components/product'
+import product from 'components/Product'
 import {buy} from 'src/reducers/product/action'
 const mapStateToProps = (state) => {
     return {

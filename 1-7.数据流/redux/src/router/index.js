@@ -11,8 +11,8 @@ const getRouter = () => (
     <Nav></Nav>
         <Switch>
             <Route exact path="/" component={Home}></Route>
-            <Route exact path="/page" component={Page}></Route>
-            <Route exact path="/shop" component={shop}></Route>
+            <Route path="/page" component={Page}></Route>
+            <Route path="/shop" component={shop}></Route>
         </Switch>
     </BrowserRouter>
 )

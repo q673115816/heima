@@ -1,14 +1,20 @@
-import { getAllProducts } from 'src/api/shop'
+import shop from 'src/api/shop'
+
+import {INIT} from '../actionType'
 export const init = () => {
     return dispatch => {
-        getAllProducts().then(res => {
-            console.log(res);
-            dispatch({
-                type: 'INIT',
-                payload: {
-                    all: res
-                }
-            })
+        shop.getProducts(products => {
+            dispatch(receiveProducts(products))
         })
     }
 }
+
+const receiveProducts = products => {
+    console.log(products);
+    
+    return {
+        type: INIT,
+        payload: {all: products}
+    }
+}
+

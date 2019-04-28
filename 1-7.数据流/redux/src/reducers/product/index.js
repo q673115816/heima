@@ -12,6 +12,8 @@ function buy(state = initialState.all, action) {
     } = action
     switch(type) {
         case INIT:
+        console.log(payload);
+        
             return [...state, ...payload.all]
         case ADD_CART:
         return state.map(item => {
