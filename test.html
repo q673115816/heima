@@ -6,62 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .dialog {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
 </head>
 
 <body>
-    <div>
-        <a href="mailto:673115816@qq.com">Send email to nowhere</a>
-        <div id="example">
-        </div>
-        <button id="button">Not tomato</button>
-        <input type="color" name="" id="">
+
+    <div class="dialog">
+        <a href="javascript:;" class="click">点击</a>
     </div>
-
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script>
-        var number = 5;
-        var obj = {
-            number: 3,
-            fn1: (function () {
-                var number;
-                console.log('this', this.number)
-                console.log('test',number)
-                this.number *= 2;
-                console.log('test',number)
-
-                number = number * 2;
-                console.log('test',number)
-
-                number = 3;
-                console.log('test',number)
-
-                return function () {
-                console.log('test',number)
-
-                    var num = this.number;
-                    console.log('this2', this.number);
-                    
-                console.log('test',number)
-
-                    this.number *= 2;
-                console.log('test',number)
-
-                    console.log(num);
-                    number *= 3;
-                console.log('test',number)
-
-                    console.log(number);
-                }
-            })()
-        }
-        var fn1 = obj.fn1;
-        console.log(1111111);
-        
-        fn1.call(null);
-        console.log(22222222);
-        
-        obj.fn1();
-        console.log(window.number);
+        $(function() {
+            $('.dialog').show()
+            $(document).on('click', '.click', function() {
+                console.log(111)
+            })
+        })
     </script>
 </body>
 
