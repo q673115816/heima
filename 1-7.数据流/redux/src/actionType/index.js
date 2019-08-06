@@ -1,0 +1,8 @@
+export const INIT = 'INIT'
+export const TEST = 'TEST'
+export const BUY = 'BUY'
+export const ADD_CART = 'ADD_CART'
+export const CHECK_OUT = 'CHECK_OUT'
+export const CHECK_OUT_RESET = 'CHECK_OUT_RESET'
+export const CHECK_OUT_SUCCESS = 'CHECK_OUT_SUCCESS'
+export const CHECK_OUT_FAILED = 'CHECK_OUT_FAILED'
