@@ -8,6 +8,8 @@ const app = next({
 })
 const handle = app.getRequestHandler()
 
+const { parse } = require('url')
+
 app.prepare()
     .then(() => {
         const server = express()
@@ -15,8 +17,10 @@ app.prepare()
 
 
         server.get('/movie/:type', (req, res) => {
-            console.log(req,res)
-            const actualPage = '/movie/tpye'
+            // console.log(req,res)
+            console.log(11);
+            
+            const actualPage = '/movie/type'
             const queryParams = {
                 type: req.params.type
             }

@@ -1,33 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { observable, action } from 'mobx';
-import { observer } from 'mobx-react';
-import es6 from './es6/decorator'
-class Store {
-    @observable count = 0
-    @action.bound increment () {
-        this.count++
-    }
-}
+import Store from './store'
 
-@observer
-class App extends React.Component {
-    render () {
-        const { store} = this.props
-        return (
-            <div>
-                <h1>App Component</h1>
-                <p>{store.count}</p>
-                <p>
-                    <button onClick={store.increment}>increment</button>
-                </p>
-            </div>
-        )
-    }
-}
+
+// @observer
+// class App extends React.Component {
+//     render () {
+//         const { store} = this.props
+//         return (
+//             <div>
+//                 <h1>App Component</h1>
+//                 <p>{store.count}</p>
+//                 <p>
+//                     <button onClick={store.increment}>increment</button>
+//                 </p>
+//             </div>
+//         )
+//     }
+// }
 
 ReactDOM.render(<App store={new Store()} />, document.getElementById('root'));
 

@@ -18,18 +18,9 @@ const _products = [{
 }
 ]
 
-export function getAllProducts () {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(_products)
-    }, 100)
-  })
-}
+const TIMEOUT = 100
 
-export function BUY (params, fn1, fn2) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      Math.random() > 0.5 ? fn1() : fn2()
-    }, 100)
-  })
+export default {
+  getProducts: (cb, timeout) => setTimeout(() => cb(_products), timeout || TIMEOUT),
+  buyProducts: (payload, cb1, cb2, timeout) => setTimeout(() => Math.random() > 0.5? cb1() : cb2(), timeout || TIMEOUT)
 }
