@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+    h1=title
+    form(action="", method="post")
+        h2 book: #{book.title}
+        p #[strong Do you really want to delete this book]
+        button.btn.btn-danger Delete
+        a.btn.btn-default(href="javascript:history.back()") Back
