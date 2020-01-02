@@ -32,9 +32,23 @@ AuthorSchema
 AuthorSchema
     .virtual('lifespan')
     .get(function () {
-        return (this.date_of_death.getYear() - this.date_of_birth.getYear()).toString();
+        var d = this.date_of_death_format
+        var b = this.date_of_birth_format
+        return `${b} - ${d}`
     });
 
+
+AuthorSchema
+.virtual('years')
+.get(function() {
+    var d = this.date_of_death_format || '不详'
+    var b = this.date_of_birth_format || '不详'
+    console.log(d, b)
+    if (!this.date_of_death || !this.date_of_birth) {
+        return `${b} - ${d}`
+    }
+    return (new Date(this.date_of_death).getFullYear() - new Date(this.date_of_birth).getFullYear())
+})
 // 虚拟属性'url'：作者 URL
 AuthorSchema
     .virtual('url')
@@ -45,13 +59,13 @@ AuthorSchema
 AuthorSchema
     .virtual('date_of_birth_format')
     .get(function () {
-        return this.date_of_birth ? moment(this.date_of_birth).format('YYYY-MM-DD') : '不详';
+        return this.date_of_birth ? moment(this.date_of_birth).format('LL') : '不详';
     })
 
 AuthorSchema
     .virtual('date_of_death_format')
     .get(function () {
-        return this.date_of_death ? moment(this.date_of_death).format('YYYY-MM-DD') : '不详';
+        return this.date_of_death ? moment(this.date_of_death).format('LL') : '不详';
     })
 
 // 导出 Author 模型

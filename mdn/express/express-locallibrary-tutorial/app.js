@@ -3,16 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var compression = require('compression')
+var helmet = require('helmet')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var wiki = require('./wiki')
 var catalogRouter = require('./routes/catalog')
+var wiki = require('./wiki')
 var app = express();
 
 
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb+srv://vcd:ACGlin@locallibrary-sayyy.mongodb.net/test?retryWrites=true';
+const mongoDB = process.env.MONGODB_URI || 'mongodb+srv://vcd:ACGlin@locallibrary-sayyy.mongodb.net/test?retryWrites=true';
 mongoose.connect(mongoDB, {
   useNewUrlParser: true
 } );
@@ -20,6 +22,8 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB 连接错误：'));
 
+app.use(helmet())
+app.use(compression())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -50,4 +54,14 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+
+var debug = require('debug')('my-application'); // debug模块
+app.set('port', process.env.PORT || 3000); // 设定监听端口
+
+//启动监听
+var server = app.listen(app.get('port'), function () {
+  debug('Express server listening on port ' + server.address().port);
+});
+
+// https://www.cnblogs.com/chengyunshen/p/9935959.html
+//module.exports = app;//这是 4.x 默认的配置，分离了 app 模块,将它注释即可，上线时可以重新改回来
